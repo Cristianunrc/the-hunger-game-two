@@ -15,7 +15,6 @@ def create_app(config_name='development'):
     config[config_name].init_app(app)
     
     db.init_app(app)
-    #app.secret_key = config[config_name].SECRET_KEY
     jwt.init_app(app)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

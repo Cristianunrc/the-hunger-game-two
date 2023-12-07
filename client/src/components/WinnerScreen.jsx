@@ -1,18 +1,16 @@
 import React, { useEffect, useRef } from 'react';
+import { useGame } from "./GameContext";
 import './WinnerScreen.css';
 import "./Common.css";
-import { useGame } from "./GameContext";
-
 
 const WinnerScreen = ({ onViewChange }) => {
     const audioRef = useRef(null);
+    const { characters } = useGame();
+    const { winnerCharacter } = useGame();
 
     const handleRestartGame = () => {
       onViewChange("menu"); // Llamando a la función proporcionada desde App
     };
-
-    const { characters } = useGame();
-    const { winnerCharacter } = useGame();
   
     useEffect(() => {
       const audio = audioRef.current;
@@ -42,7 +40,6 @@ const WinnerScreen = ({ onViewChange }) => {
         </div>
         <div className="restart-save-container">
           <button className='button-restart-game' onClick={handleRestartGame}>Restart Game</button>
-          <button className='button-save-game' >Save Game</button>
         </div>
         <audio ref={audioRef} autoPlay>
           <source src="/winner_district.wav" type="audio/wav" />

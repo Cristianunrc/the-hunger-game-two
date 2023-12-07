@@ -64,7 +64,7 @@
 }  
 
 
-.button-restart-game, .button-save-game{
+.button-restart-game {
     width: 10em;
     position: relative;
     height: 3.5em;
@@ -78,15 +78,11 @@
     margin: 30px;
 }
   
-.button-restart-game, .button-save-game {
+.button-restart-game {
     background-color: #00000071;
     border: 3px ridge hsla(0, 0%, 0%, 0.637);
 }
   
 .button-restart-game:hover{
     box-shadow: inset 0px 0px 25px red;
-}
-
-.button-save-game:hover {
-    box-shadow: inset 0px 0px 25px blue;
 }

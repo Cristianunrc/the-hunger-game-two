@@ -25,11 +25,6 @@ const Register = ({ onViewChange, isLoggedIn }) => {
       return;
     }
 
-    if (password !== confirmPassword) {
-      setConfirmPasswordError('Passwords do not match');
-      return;
-    }
-
     if (isLoggedIn) {
       setRegisterError('You can not register, you must logout first');
       return;
@@ -38,6 +33,7 @@ const Register = ({ onViewChange, isLoggedIn }) => {
     const userData = {
       name: username,
       password: password,
+      confirmPassword: confirmPassword,
     };
 
     try {
@@ -50,9 +46,13 @@ const Register = ({ onViewChange, isLoggedIn }) => {
       });
 
       if (response.ok) {
-        onViewChange('init');
+        onViewChange('login');
       } else {
-        setRegisterError('Username taken');
+          if (response.status === 401){
+            setConfirmPasswordError('Passwords do not match');  
+          } else {
+            setRegisterError('Username taken');    
+          }
       }
     } catch (error) {
       setRegisterError('Error registering, please try again more later');

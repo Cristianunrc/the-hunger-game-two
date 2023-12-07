@@ -29,6 +29,10 @@ class Register(Resource):
         data = request.get_json()
         name = data.get('name')
         password = data.get('password')
+        confirm_password = data.get('confirmPassword')
+
+        if password != confirm_password:
+            return {'error' : 'Las contraseñas no coinciden.'}, 401
         
         if is_user_authenticated:
             return {'error': 'No puedes registrar una cuenta si estás logueado.'}, 400
