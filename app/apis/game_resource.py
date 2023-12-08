@@ -45,9 +45,11 @@ class Game(Resource):
             controller = GameController() 
             next_iteration = controller.get_one_iteration(current_game)
             live_district = controller.pause_method(current_game)
+            health_district = controller.life_of_each_district(current_game)
             
             response = {game_id: next_iteration,
-                        'pause': live_district}
+                        'pause': live_district,
+                        'health': health_district}
             
             return response
         else:

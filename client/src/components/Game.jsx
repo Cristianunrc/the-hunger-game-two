@@ -43,8 +43,11 @@ const Game = ({onViewChange}) => {
   const [winner, setWinner] = useState(null);
 
   //Estado distritos
-  const [livetribute,setLiveTribute] = useState([])
+  const [liveTribute, setLiveTribute] = useState([]);
   
+  // Salud de cada distrito
+  const [healthDistrict, setHealthDistrict] = useState([]); 
+
   //Estado del juego
   const [gameInitialized, setGameInitialized] = useState(false);
 
@@ -55,7 +58,7 @@ const Game = ({onViewChange}) => {
   const { gameID, setGameID } = useGame();
 
   //Estado para obtener la apariencia del distrito ganador
-  const { setWinnerCharacter }= useGame();
+  const { setWinnerCharacter } = useGame();
 
   const [speed, setSpeed] = useState(1);
 
@@ -81,7 +84,7 @@ const Game = ({onViewChange}) => {
           width: '80%', // Modifica el ancho del control deslizante
           margin: '0 auto', // Centra el control deslizante horizontalmente
           padding: '5px', // Añade un espacio alrededor del control deslizante
-        cursor: 'pointer', // 
+        cursor: 'pointer', 
         }}
       />
     </div>
@@ -133,9 +136,11 @@ const Game = ({onViewChange}) => {
         });
         if (response.ok) {
           const data = await response.json();
-          const gameData = data[gameID];
-          const pause = data['pause'];
+          const gameData = data[gameID]; // recibe el id del juego
+          const pause = data['pause']; // recibe la pausa del juego
+          const health = data['health']; // recibe una lista con la salud de cada distrito
           setLiveTribute(pause);
+          setHealthDistrict(health);
           setBoardState(gameData.board.board);
           
           if (gameData.winner !== null) {
@@ -151,7 +156,7 @@ const Game = ({onViewChange}) => {
     }
   };
  
-  // Crea un juego si  es necesario y se encarga de actualizarlo cada cierto intervalo
+  // Crea un juego si es necesario y se encarga de actualizarlo cada cierto intervalo
   useEffect(() => {
     let timeInterval;
 
@@ -182,12 +187,12 @@ const Game = ({onViewChange}) => {
   return (
     <main className="game">
       <div className="game-container">
-      {livetribute.length !== 0 && isPaused && (
+      {liveTribute.length !== 0 && isPaused && (
                 <div className="ventana-emergente-container">
                     <div className="ventana-emergente" onClick={handlePause}>
                         <div className="overlay"></div>
                         <h2> ¡PAUSE! </h2>
-                        {livetribute.map((elemento, index) => (
+                        {liveTribute.map((elemento, index) => (
                             <p key={index}>District {index} : {elemento} lives </p>
                         ))}
                     </div>
@@ -196,7 +201,6 @@ const Game = ({onViewChange}) => {
         <TransformWrapper minScale={0.5}>
           <div className="button-section left">
             <SpeedSlider speed={speed} handleSpeedChange={handleSpeedChange} />
-
             <ControlsZoom />
           </div>
           <TransformComponent>
@@ -214,7 +218,18 @@ const Game = ({onViewChange}) => {
             <ControlsAdvance onPause={handlePause} onFinish={handleFinish} />
         </div>
       </div>
+      <div className="health-section">
+        <h2>Helth Districts</h2>
+        <ul>
+          {healthDistrict.map((health, index) => (
+            <li key={index}>
+              District {index}: {health} health
+            </li>
+          ))}
+        </ul>
+      </div>
     </main>
   );
 };
+
 export default Game;

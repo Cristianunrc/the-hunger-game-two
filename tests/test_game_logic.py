@@ -759,3 +759,10 @@ def test_set_parameters_valid_inputs():
         assert tribute.alliance == 3
         assert tribute.cowardice == 0
         assert tribute.district == DISTRICT_DEFAULT
+
+def test_district_lifes():
+    game = GameLogic()
+    game.set_parameters(70, 5, 6, 4, 3)
+    game.configure_random_districts()
+    list_district_life = game.district_lifes()
+    assert list_district_life == [280, 200, 200, 200, 200, 200]

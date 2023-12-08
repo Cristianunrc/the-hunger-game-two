@@ -56,7 +56,6 @@ class GameLogic:
             district_aux.asign_name_tribute(tribute)
             self.districts.append(district_aux)
             self.board.put_tribute(row, column, tribute)
-
         else:
             self.board.put_tribute(row, column, tribute)
             self.districts[tribute.district].add_tribute(tribute)
@@ -503,6 +502,14 @@ class GameLogic:
 
         return lives
 
+    # Calculate the life of each district by sumatory of each life tributes per district's
+    def district_lifes(self):
+        district_life = []
+        for district in self.districts:
+            total_life = sum(tribute.life for tribute in district.tributes)
+            district_life.append(total_life)
+        
+        return district_life
 
 class GameLogicSchema(Schema):
     from game.logic.district import DistrictSchema
@@ -515,3 +522,4 @@ class GameLogicSchema(Schema):
     neutrals = fields.Nested(TributeSchema, many=True)
     winner = fields.Integer(allow_none=True)
     lives = fields.List(fields.Integer)
+    
