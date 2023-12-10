@@ -34,7 +34,11 @@ class Game(Resource):
         if 0 < game_id:
             current_game = games[game_id]
             game_schema = GameLogicSchema()
-            return {game_id: game_schema.dump(current_game)}
+            game_controller = GameController()
+            health_district = game_controller.life_of_each_district(current_game)
+
+            return {game_id: game_schema.dump(current_game),
+                    'health': health_district}
         else:
             return {'error': 'Game not found'}, 404
           

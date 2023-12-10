@@ -22,6 +22,7 @@
   height: auto;
   border-radius: 10px;
 }
+
 .overlay {
   position: absolute;
   top: 0;
@@ -33,11 +34,11 @@
   mix-blend-mode: color-dodge;
 }
 
-
 @font-face {
   font-family: '8-bit';
   src: url('../../public/fonts/8-bit.ttf') format('truetype'); /* Reemplaza con la ruta correcta y formato de archivo */
 }
+
 .ventana-emergente-container {
   position: fixed;
   top: 0;
@@ -50,7 +51,6 @@
   backdrop-filter: blur(10px); /* Aplicar un desenfoque al fondo */
   z-index: 1; /* Asegurarse de que esté detrás de la ventana emergente */
   font-family: '8-bit', sans-serif; /* Aplicar la fuente 8-bit */
-
 }
 
 .ventana-emergente {
@@ -78,7 +78,6 @@
   font-size: 40px;
 }
 
-
 .button-section.left,
 .button-section.right {
   display: flex;
@@ -105,49 +104,78 @@
 }
 
 .game {
-    background-image: url('../../public/game.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+  background-image: url('../../public/game.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .game-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh;
-    padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px;
+} 
   
-  }
+/* Estilos para los botones de zoom en el lado izquierdo */
+.button-section.left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
   
+.button-section.left button {
+  margin-bottom: 10px; 
+  border-radius: 100px;
+  padding: 10px;
+}
   
-  /* Estilos para los botones de zoom en el lado izquierdo */
-  .button-section.left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* Estilos para los botones en el lado derecho */
+.button-section.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
   
-  .button-section.left button {
-    margin-bottom: 10px; 
-    border-radius: 100px;
-    padding: 10px;
-  }
-  
-  /* Estilos para los botones en el lado derecho */
-  .button-section.right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .button-section.right button {
-    margin-bottom: 10px; 
-  }
-  
+.button-section.right button {
+  margin-bottom: 10px; 
+}
  
-  .board {
-    flex: 1; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+.board {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.health-section {
+  margin-top: 20px;
+}
+
+.health-section h2,
+.health-section p {
+  color: white; 
+}
+
+.health-bar-container {
+  margin-bottom: 15px;
+}
+
+.health-bar {
+  height: 20px;
+  border: 1px solid #000;
+  overflow: hidden;
+  background-color: #eee;
+}
+
+.health-progress {
+  height: 100%;
+  background-color: #4CAF50;
+  transition: width 0.5s ease-in-out;
+}
+
+.health-value {
+  display: inline-block;
+  margin-left: 5px;
+  color: black;
+}

@@ -48,6 +48,9 @@ const Game = ({onViewChange}) => {
   // Salud de cada distrito
   const [healthDistrict, setHealthDistrict] = useState([]); 
 
+  // Salud del distrito 0
+  const [healthDistrict0, setHealthDistrict0] = useState(0);
+
   //Estado del juego
   const [gameInitialized, setGameInitialized] = useState(false);
 
@@ -113,9 +116,13 @@ const Game = ({onViewChange}) => {
     if (response.ok) {
       const data = await response.json();
       const gameData = data[gameID];
+      const health = data['health'];
+
       if (gameData && gameData.board) {
         setBoardState(gameData.board.board);
-        setBoardSize(gameData.board.rows); 
+        setBoardSize(gameData.board.rows);
+        setHealthDistrict(health); // seteo la salud de todos los distritos
+        setHealthDistrict0(health[0]); // seteo la salud del distrito 0
       } else {
         console.error('La estructura de datos es incorrecta:', data);
       }
@@ -125,7 +132,6 @@ const Game = ({onViewChange}) => {
     setGameInitialized(true);
     setPaused(true);
   }
- 
   
   // Actualiza el juego creado 
   const fetchGameInfo = async () => {
@@ -193,7 +199,7 @@ const Game = ({onViewChange}) => {
                         <div className="overlay"></div>
                         <h2> ¡PAUSE! </h2>
                         {liveTribute.map((elemento, index) => (
-                            <p key={index}>District {index} : {elemento} lives </p>
+                          <p key={index}>District {index} : {elemento} lives</p>
                         ))}
                     </div>
                 </div>
@@ -210,7 +216,6 @@ const Game = ({onViewChange}) => {
               ) : (
                 <Board size={boardSize} boardState={boardState} />
               )}
-              
             </section>
           </TransformComponent>
         </TransformWrapper>
@@ -219,14 +224,17 @@ const Game = ({onViewChange}) => {
         </div>
       </div>
       <div className="health-section">
-        <h2>Helth Districts</h2>
-        <ul>
+        <h2>Health Districts</h2>
           {healthDistrict.map((health, index) => (
-            <li key={index}>
-              District {index}: {health} health
-            </li>
+            <div key={index} className="health-bar-container">
+              <p>District {index}</p>
+              <div className="health-bar">
+                <div className="health-progress" style={{ width: `${Math.max(index === 0 ? (health / healthDistrict0) * 100 : (health / 200) * 100,  0)}%` }}>
+                  <span className="health-value">{health}</span>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
       </div>
     </main>
   );
