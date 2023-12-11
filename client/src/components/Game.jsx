@@ -19,10 +19,10 @@ const ControlsZoom = () => {
   );
 };
 
-const ControlsAdvance = memo(({ onPause, onBack }) => {
+const ControlsAdvance = memo(({ onPause, onBack, isPaused }) => {
   return (
     <>
-      <button onClick={onPause}>Play</button> 
+      <button onClick={onPause}>{ isPaused ? 'Play' : 'Pause' }</button> 
       <button onClick={onBack}>Back</button>
     </>
   );
@@ -87,7 +87,7 @@ const Game = ({onViewChange}) => {
           width: '80%', // Modifica el ancho del control deslizante
           margin: '0 auto', // Centra el control deslizante horizontalmente
           padding: '5px', // Añade un espacio alrededor del control deslizante
-        cursor: 'pointer', 
+          cursor: 'pointer', 
         }}
       />
     </div>
@@ -147,9 +147,9 @@ const Game = ({onViewChange}) => {
         });
         if (response.ok) {
           const data = await response.json();
-          const gameData = data[gameID]; // recibe el id del juego
-          const pause = data['pause']; // recibe la pausa del juego
-          const health = data['health']; // recibe una lista con la salud de cada distrito
+          const gameData = data[gameID];
+          const pause = data['pause'];
+          const health = data['health'];
           setLiveTribute(pause);
           setHealthDistrict(health);
           setBoardState(gameData.board.board);
@@ -238,7 +238,7 @@ const Game = ({onViewChange}) => {
           </TransformComponent>
         </TransformWrapper>
         <div className="button-section right">
-          <ControlsAdvance onPause={handlePause} onBack={handleBackToMenu} />
+          <ControlsAdvance onPause={handlePause} onBack={handleBackToMenu} isPaused={isPaused} />
         </div>
       </div>
     </main>
