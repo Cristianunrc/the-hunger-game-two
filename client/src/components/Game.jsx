@@ -19,11 +19,11 @@ const ControlsZoom = () => {
   );
 };
 
-const ControlsAdvance = memo(({ onPause, onFinish }) => {
+const ControlsAdvance = memo(({ onPause, onBack }) => {
   return (
     <>
-      <button onClick={onPause}>Play</button>
-      <button onClick={onFinish}>Finish</button>
+      <button onClick={onPause}>Play</button> 
+      <button onClick={onBack}>Back</button>
     </>
   );
 });
@@ -102,6 +102,11 @@ const Game = ({onViewChange}) => {
   const handleFinish = () => {
     setGameID(null);
     onViewChange("finish");
+  }
+
+  const handleBackToMenu = () => {
+    setGameID(null);
+    onViewChange("menu");
   }
 
   // Tablero vacío
@@ -193,11 +198,24 @@ const Game = ({onViewChange}) => {
   return (
     <main className="game">
       <div className="game-container">
+        <div className="health-section">
+          <h2>Health Districts</h2>
+            {healthDistrict.map((health, index) => (
+              <div key={index} className="health-bar-container">
+                <p>District {index}</p>
+                <div className="health-bar">
+                  <div className="health-progress" style={{ width: `${Math.max(index === 0 ? (health / healthDistrict0) * 100 : (health / 200) * 100,  0)}%` }}>
+                    <span className="health-value">{health}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>  
       {liveTribute.length !== 0 && isPaused && (
                 <div className="ventana-emergente-container">
                     <div className="ventana-emergente" onClick={handlePause}>
                         <div className="overlay"></div>
-                        <h2> ¡PAUSE! </h2>
+                        <h2>¡PAUSE!</h2>
                         {liveTribute.map((elemento, index) => (
                           <p key={index}>District {index} : {elemento} lives</p>
                         ))}
@@ -220,21 +238,8 @@ const Game = ({onViewChange}) => {
           </TransformComponent>
         </TransformWrapper>
         <div className="button-section right">
-            <ControlsAdvance onPause={handlePause} onFinish={handleFinish} />
+          <ControlsAdvance onPause={handlePause} onBack={handleBackToMenu} />
         </div>
-      </div>
-      <div className="health-section">
-        <h2>Health Districts</h2>
-          {healthDistrict.map((health, index) => (
-            <div key={index} className="health-bar-container">
-              <p>District {index}</p>
-              <div className="health-bar">
-                <div className="health-progress" style={{ width: `${Math.max(index === 0 ? (health / healthDistrict0) * 100 : (health / 200) * 100,  0)}%` }}>
-                  <span className="health-value">{health}</span>
-                </div>
-              </div>
-            </div>
-          ))}
       </div>
     </main>
   );

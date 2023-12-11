@@ -150,6 +150,7 @@
 
 .health-section {
   margin-top: 20px;
+  margin-right: 70px;
 }
 
 .health-section h2,
@@ -166,16 +167,19 @@
   border: 1px solid #000;
   overflow: hidden;
   background-color: #eee;
+  border-radius: 10px;
 }
 
 .health-progress {
   height: 100%;
   background-color: #4CAF50;
   transition: width 0.5s ease-in-out;
+  border-radius: 8px;
 }
 
 .health-value {
   display: inline-block;
-  margin-left: 5px;
+  margin-left: 20px;
   color: black;
+  font-weight: bold;
 }
