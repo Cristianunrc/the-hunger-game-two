@@ -24,6 +24,7 @@
 
 .volume-slider.active {
   display: block;
+  cursor: pointer;
 }
 
 .audio-container {
@@ -34,8 +35,7 @@
   text-align: center;
   width: 150px;
   height: 60px;
-  padding: auto;
-  
+  padding: auto; 
 }
 
 .volume-button-off {

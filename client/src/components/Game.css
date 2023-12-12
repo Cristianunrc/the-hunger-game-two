@@ -107,14 +107,17 @@
   background-image: url('../../public/game.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
 }
 
 .game-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
   padding: 0 20px;
+  max-width: 100%;
+  box-sizing: border-box;
 } 
   
 /* Estilos para los botones de zoom en el lado izquierdo */

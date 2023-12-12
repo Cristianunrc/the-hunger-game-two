@@ -2,16 +2,16 @@ import React, { useState, useRef } from 'react';
 import './Header.css';
 
 const Header = ({ onViewChange }) => {
-  
-  const handleLogoClick = () => {
-    // Redirige a la página de inicio (recarga la página)
-    window.location.href = '/';
-  };
 
   const [volume, setVolume] = useState(0.2); 
   const audioRef = useRef(new Audio('/audio.mp3'));
   const [isVolumeVisible, setIsVolumeVisible] = useState(false);
   const volVisble = isVolumeVisible ? 'volume-button-on' : 'volume-button-off';
+
+  const handleLogoClick = () => {
+    // Redirige a la página de inicio (recarga la página)
+    window.location.href = '/';
+  };
 
   const handleToggleVolume = () => {
     setIsVolumeVisible(!isVolumeVisible);
