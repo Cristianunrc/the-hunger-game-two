@@ -10,7 +10,6 @@ export const GameProvider = ({ children }) => {
   const [neutralCharacter, setNeutralCharacter] = useState(null);
   const [charactersOrdered, setCharactersOrdered] = useState(null);
 
-
   const contextValue = {
     gameID,
     setGameID,
@@ -32,7 +31,6 @@ export const GameProvider = ({ children }) => {
     </GameContext.Provider>
   );
 };
-
 
 export const useGame = () => {
   return useContext(GameContext);

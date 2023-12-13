@@ -56,14 +56,11 @@ const bars = {
 };
 
 function BackButton({ onClick }) {
-  const backButtonClass = "init-simulation-button is-ready"; // Utiliza la misma clase de estilo que el botón "Start Simulation"
+  const backButtonClass = "init-simulation-button is-ready";
   return (
-    <button className={backButtonClass} onClick={onClick}>
-      Back
-    </button>
+    <button className={backButtonClass} onClick={onClick}>Back</button>
   );
 }
-
 
 export default function Menu({ onViewChange }) {
   // Estado de la barra de stats disponibles
@@ -93,6 +90,7 @@ export default function Menu({ onViewChange }) {
   const incrementStat = (statKey, increases, consumes) => {
     const indexStat = stats[statKey].bar.findIndex(isConsumed => !isConsumed);
     const indexStatsBar = statsBar.slice().reverse().findIndex(isConsumed => isConsumed);
+    
     if (indexStat !== -1 && indexStatsBar !== -1) {
       const newStats = { ...stats };
       const newStatsBar = [...statsBar];
@@ -112,10 +110,10 @@ export default function Menu({ onViewChange }) {
     }
   };
   
-  
   const decrementStat = (statKey, increases, consumes) => {
     const indexStat = stats[statKey].bar.slice().reverse().findIndex(isConsumed => isConsumed);
     const indexStatsBar = statsBar.findIndex(isConsumed => !isConsumed);
+    
     if (indexStat !== -1 && indexStatsBar !== -1) {
       const newStats = { ...stats };
       const newStatsBar = [...statsBar];
@@ -165,7 +163,6 @@ export default function Menu({ onViewChange }) {
       console.error('Error fetching data:', error);
     }
   };
-  
   
   useEffect(() => {
     const updatedStats = {};
@@ -222,7 +219,7 @@ export default function Menu({ onViewChange }) {
   };
 
   const handleBackToHome = () => {
-    onViewChange('init'); // Cambia "home" al valor correcto para regresar a la página de inicio
+    onViewChange('init');
   };
 
   function MenuButtonsContainer({ children }) {
@@ -230,7 +227,6 @@ export default function Menu({ onViewChange }) {
   }
 
   return (
-    
     <div className="menu-container">
       <div className="stats-settings-container">
         <div>
@@ -261,7 +257,6 @@ export default function Menu({ onViewChange }) {
             />
           ))}
         </div>
-        
         <MenuButtonsContainer>
           <BackButton onClick={handleBackToHome} />
           <InitGameButton isReady={isReady} onClick={handleStartGame} />
