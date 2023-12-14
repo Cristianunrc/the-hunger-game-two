@@ -23,26 +23,16 @@
   height: 40px;
 }
 
-.board-tribute img{
-  width: 80%;
-  height: auto;
+.board-tribute img, .board-tribute-n img {
+  width: 95%;
+  height: 135%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.board-tribute-n img{
-  width: 60%;
-  height: 90%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-
-.board-potion img{
+.board-potion img {
   width: 50%;
   height: auto;
   position: absolute;
@@ -51,19 +41,11 @@
   transform: translate(-50%, -50%);
 }
 
-.board-sword img, .board-spear img{
-  width: 50%;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  rotate: -30deg;
-}
-
-.board-bow img{
-  width: 50%;
-  height: auto;
+.board-sword img,
+.board-spear img,
+.board-bow img {
+  width: 63%;
+  height: 60%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -72,9 +54,9 @@
 }
 
 .pointer {
-  width: 15px;
-  height: auto;
+  width: 10px;
+  height: 6px;
   position: absolute;
   top: 0%;
-  left: 35%;
+  left: 40%;
 }

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./Menu.css";
-import "./Common.css";
+import { act } from 'react-dom/test-utils';
 import { useGame } from "./GameContext";
 import { IncrementableBar, StatsBar } from "./IncrementableBar";
-import { act } from 'react-dom/test-utils';
+import "./Menu.css";
+import "./Common.css";
 
 function InitGameButton({ isReady, onClick }) {
   const initSimulationButtonClass = isReady ? 'init-simulation-button is-ready' : 'init-simulation-button';
-  return <button className={initSimulationButtonClass} onClick={onClick}>Start Simulation</button>;
+  return <button className={initSimulationButtonClass} onClick={onClick}>Start simulation</button>;
 };
 
 function CharacterCard({ characterKey, image, isSelected, onSelect }) {
@@ -231,7 +231,7 @@ export default function Menu({ onViewChange }) {
       <div className="stats-settings-container">
         <div>
           <strong className="available-stats">
-             Your stats:<StatsBar stats={statsBar} />
+             Distribute your stats for your district<StatsBar stats={statsBar} />
           </strong> 
         </div>
         <div className="choose-character-container">

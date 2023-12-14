@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import { useGame } from "./GameContext";
 
-const Tribute0Walk1 = "/board-images/characters/CH1.png";
-const Tribute1Walk1 = "/board-images/characters/CH2.png";
-const Tribute2Walk1 = "/board-images/characters/CH3.png";
-const Tribute3Walk1 = "/board-images/characters/CH4.png";
-const Tribute4Walk1 = "/board-images/characters/CH5.png";
-const Tribute5Walk1 = "/board-images/characters/CH6.png";
-const TributeNWalk1 = "/board-images/characters/N.png";
+const Tribute0Walk1 = "/board-images/characters/fallenAngelFight0.png";
+const Tribute1Walk1 = "/board-images/characters/orcoFight1.png";
+const Tribute2Walk1 = "/board-images/characters/minotauroFight2.png";
+const Tribute3Walk1 = "/board-images/characters/reaperManFight3.png";
+const Tribute4Walk1 = "/board-images/characters/golemFight4.png";
+const Tribute5Walk1 = "/board-images/characters/goblinFight5.png";
+const TributeNWalk1 = "/board-images/characters/fallenAngelFightNeutral.png";
 
 const CharacterImages = [
     Tribute0Walk1,
@@ -17,6 +17,7 @@ const CharacterImages = [
     Tribute4Walk1,
     Tribute5Walk1
 ]
+
 const renderTributeImage = (selectedTribute, characters) => {  
     const result = [];
     for (let i = 0; i < characters.length; i++) {
@@ -35,7 +36,6 @@ const Characters = () => {
       setCharactersOrdered(CharacterImages);
     }, [selectedCharacter, setCharacters, setNeutralCharacter, setCharactersOrdered]);
   
-    // No necesitas renderizar nada en este componente, ya que su propósito es actualizar el contexto.
     return null;
   };
 

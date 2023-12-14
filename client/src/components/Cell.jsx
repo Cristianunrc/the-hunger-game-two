@@ -24,7 +24,6 @@ const Cell = ({state}) => {
   const PoisonImage = "/board-images/items/poison.png";
   const ForceImage = "/board-images/items/force.png";
 
-  
 
   const renderContent = () => {
     switch (state) {

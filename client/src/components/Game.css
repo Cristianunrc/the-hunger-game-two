@@ -54,10 +54,10 @@
 }
 
 .ventana-emergente {
-  width: 80%; /* Ajustar el ancho según tus necesidades */
+  width: 80%;
   max-width: 800px; /* Establecer un ancho máximo */
   height: 60vh; /* Ajustar la altura según tus necesidades */
-  max-height: 600px; /* Establecer una altura máxima */
+  max-height: 600px;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   border-radius: 10px;
@@ -126,6 +126,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-left: 50px;
+  margin-right: 30px;
 }
   
 .button-section.left button {
@@ -139,10 +140,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-left: 30px;
 }
   
 .button-section.right button {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
  
 .board {
