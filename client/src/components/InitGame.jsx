@@ -6,7 +6,7 @@ import Logout from './Logout.jsx';
 
 const InitGame = ({ onViewChange, isLoggedIn, onLogout}) => {
   const handlePlayGame = () => {
-    onViewChange("menu"); // Llamando a la función proporcionada desde App
+    onViewChange("menu");
   };
 
   const handleViewRules = () => {
@@ -34,7 +34,7 @@ const InitGame = ({ onViewChange, isLoggedIn, onLogout}) => {
         PLAY GAME
       </button>
       <button className='button-play-game' onClick={handleViewAbout}>ABOUT GAME</button>
-      {isLoggedIn && <Logout isLoggedIn={isLoggedIn} onLogout={onLogout} onViewChange={onViewChange}/>}
+      {isLoggedIn && <Logout isLoggedIn={isLoggedIn} onLogout={onLogout} onViewChange={onViewChange} />}
       <Footer onViewChange={onViewChange} /> 
     </div>
   );

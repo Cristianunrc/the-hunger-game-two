@@ -54,11 +54,11 @@
 
 .video-init {
   width: auto;
-  height: 70vh;
+  height: 60vh;
 }
 
 @media screen and (max-width: 1368px) {
   .video-init {
-    height: 55vh; /* Ajusta según tus necesidades */
+    height: 55vh;
   }
 }

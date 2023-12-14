@@ -67,7 +67,7 @@ const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
       <div className="login-container">
         <div className="background"></div>
           <div className="login">
-            <h2 className="custom-heading">Login</h2>
+            <h2>Login</h2>
               <input
                 type="text"
                 placeholder="Username"

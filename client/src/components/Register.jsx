@@ -68,7 +68,7 @@ const Register = ({ onViewChange, isLoggedIn }) => {
       <div className="register-container">
         <div className="background"></div>
         <div className="register">
-          <h2 className="custom-heading">Register</h2>
+          <h2>Register</h2>
           <input
             type="text"
             placeholder="Username"
@@ -79,6 +79,7 @@ const Register = ({ onViewChange, isLoggedIn }) => {
             }}
           />
           {usernameError && <div className="error">{usernameError}</div>}
+          
           <input
             type="password"
             placeholder="Password"
@@ -89,6 +90,7 @@ const Register = ({ onViewChange, isLoggedIn }) => {
             }}
           />
           {passwordError && <div className="error">{passwordError}</div>}
+          
           <input
             type="password"
             placeholder="Confirm password"

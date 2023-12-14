@@ -45,7 +45,7 @@
       box-shadow: 0 0 30px #e9dea2, 0 0 20px #ffd700, 0 0 30px #ffd700;
   }
 }
-  
+
 .register-container .registration-container {
   background-color: #f0f0f0;
   padding: 20px;
@@ -53,7 +53,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
   
-.register-container .custom-heading {
+.register-container h2 {
+  font-size: 25px;
   color: #333;
   font-family: 'HungerGames', Arial, sans-serif;
   -webkit-text-stroke: 1px black; 
@@ -81,6 +82,7 @@
 }
   
 .register-container input {
+  font-size: 18px;
   width: calc(100% - 20px);
   padding: 10px;
   margin: 8px 0;
@@ -95,12 +97,12 @@
 }
 
 .register-container input::before {
-  font-size: 20px;
   margin-right: 10px;
 }
   
 .register-container input::placeholder {
-  color: #fff; 
+  color: #fff;
+  font-size: 18px;
 }
 
 .register-container input:focus {
@@ -108,11 +110,10 @@
 }
 
 .register-container button {
-  margin-top: 45px;
+  margin-top: 30px;
   --white: #fff;
-  font-size: 15px;
+  font-size: 18px;
   padding: 0.7em 2.7em;
-  letter-spacing: 0.06em;
   position: relative;
   font-family: inherit;
   border-radius: 0.6em;
@@ -123,7 +124,6 @@
   background: linear-gradient(to right, rgba(253, 151, 27, 0.1) 1%, transparent 40%, transparent 60%, rgba(253, 196, 27, 0.1) 100%);
   color: var(--white);
   box-shadow: inset 0 0 10px rgba(253, 208, 27, 0.4), 0 0 9px 3px rgba(253, 215, 27, 0.1);
-  margin-bottom: 0px;
   overflow: hidden;
 }
   
@@ -140,4 +140,8 @@
   top: 0;
   transition: transform .4s ease-in-out;
   background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%, rgb(27, 253, 156, 0.1));
+}
+
+.register .error {
+  font-size: 18px;
 }
