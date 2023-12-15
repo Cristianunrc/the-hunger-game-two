@@ -20,7 +20,8 @@
 }
 
 .winner-container img {
-  height: 60vh;
+  height: 68vh;
+  margin-top: -25px;
 }
 
 .winner-card {
@@ -41,7 +42,13 @@
   z-index: 1;
   color: white;
   font-size: 2em;
+  /* font-family: 'Silkscreen-Regular', sans-serif; */
 }
+
+/* @font-face {
+  font-family: 'Silkscreen-Regular';
+  src: url('../../public/Silkscreen-Regular.ttf') format('truetype');
+} */
   
 .winner-card::before {
   content: '';
@@ -80,9 +87,10 @@
   transition: 1s;
   border-radius: 0.4em;
   border: 3px ridge hsla(0, 0%, 0%, 0.637);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   margin: 2.6em;
+  margin-top: -20px;
   animation: fireAnimation 2s infinite;
 }
 

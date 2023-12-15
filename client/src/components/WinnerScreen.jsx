@@ -35,10 +35,10 @@ const WinnerScreen = ({ onViewChange }) => {
     <div className="winner-screen">
       <div className="background"></div>
       <div className="winner-container">
-        <div className='winner-card'>
+        <div className="winner-card">
           <h2>DISTRICT {winnerCharacter} WON</h2>
         </div>
-        <img className="winner-img" src={characters[winnerCharacter]}></img>
+        <img className="winner-img" src={characters[winnerCharacter]} />
       </div>
       <button className="button-restart-game" onClick={handleRestartGame}>Restart Game</button>
       <audio ref={audioRef} autoPlay>

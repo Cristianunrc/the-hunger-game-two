@@ -12,8 +12,7 @@ export default function Footer({ onViewChange }) {
         <footer className='footer'>
             <div className='bottom-footer'>
                 <section className="game-title">
-                    <div className="top">Would you like to join?</div>
-                    <div className="bottom" aria-hidden="true">Would you like to join?</div>
+                    <h2>Would you like to join?</h2>
                 </section>
             </div>
             <div className="container-login-button">

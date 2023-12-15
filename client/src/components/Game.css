@@ -103,6 +103,15 @@
   background-color: #eb0606; 
 }
 
+.speed-slider {
+  font-family: 'Silkscreen-Regular', sans-serif;
+  width: 80%;
+}
+
+.speed-slider input {
+  cursor: pointer;
+}
+
 .game {
   background-image: url('../../public/game.jpg');
   background-size: cover;
@@ -156,6 +165,7 @@
 
 .health-section {
   margin-top: 20px;
+  font-family: 'Silkscreen-Regular', sans-serif;
 }
 
 .health-section h2,

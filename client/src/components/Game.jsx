@@ -73,24 +73,18 @@ const Game = ({onViewChange}) => {
   const SpeedSlider = ({ speed, handleSpeedChange }) => {
     return (
       <div className="speed-slider">
-      <div htmlFor="speed">Speed: {speed}</div>
-      <input
-        type="range"
-        id="speed"
-        name="speed"
-        min="0.5"
-        max="5"
-        step="0.1"
-        value={speed}
-        onChange={handleSpeedChange}
-        style={{
-          width: '80%', // Modifica el ancho del control deslizante
-          margin: '0 auto', // Centra el control deslizante horizontalmente
-          padding: '5px', // Añade un espacio alrededor del control deslizante
-          cursor: 'pointer', 
-        }}
-      />
-    </div>
+        <div htmlFor="speed">Speed: {speed}</div>
+        <input
+          type="range"
+          id="speed"
+          name="speed"
+          min="0.5"
+          max="5"
+          step="0.1"
+          value={speed}
+          onChange={handleSpeedChange}
+        />
+      </div>
     );
   };
 

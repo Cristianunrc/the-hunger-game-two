@@ -231,7 +231,7 @@ export default function Menu({ onViewChange }) {
       <div className="stats-settings-container">
         <div>
           <strong className="available-stats">
-             Distribute your stats for your district<StatsBar stats={statsBar} />
+             Distribute stats and choice your district<StatsBar stats={statsBar} />
           </strong> 
         </div>
         <div className="choose-character-container">

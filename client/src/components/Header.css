@@ -6,7 +6,19 @@
   margin: auto;
 }
 
-.logo-img{
+.top-header .game-title h2 {
+  font-family: 'Creepster-Regular', sans-serif;
+  font-size: 70px; 
+  color: #800000;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+@font-face {
+  font-family: 'Creepster-Regular';
+  src: url('../../public/Creepster-Regular.ttf') format('truetype');
+}
+
+.logo-img {
   width: 80px; 
   height: auto;
   margin: 2em;

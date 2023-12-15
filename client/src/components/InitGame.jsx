@@ -1,8 +1,8 @@
 import React from 'react';
-import "./InitGame.css";
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Logout from './Logout.jsx';
+import "./InitGame.css";
 
 const InitGame = ({ onViewChange, isLoggedIn, onLogout}) => {
   const handlePlayGame = () => {

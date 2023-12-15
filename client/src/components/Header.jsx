@@ -9,7 +9,6 @@ const Header = ({ onViewChange }) => {
   const volVisble = isVolumeVisible ? 'volume-button-on' : 'volume-button-off';
 
   const handleLogoClick = () => {
-    // Redirige a la página de inicio (recarga la página)
     window.location.href = '/';
   };
 
@@ -30,7 +29,7 @@ const Header = ({ onViewChange }) => {
   return (
     <header className='header'>
       <a href="/" onClick={handleLogoClick} className='a-logo'>
-        <img src='./11-2-the-hunger-games-picture.png' className='logo-img' alt='logo'></img>
+        <img src='./11-2-the-hunger-games-picture.png' className='logo-img' alt='logo' />
       </a>
       <div className='audio-container'>
         <audio ref={audioRef} autoPlay loop>
@@ -55,8 +54,7 @@ const Header = ({ onViewChange }) => {
       </div>
       <div className='top-header'>
         <section className="game-title">
-          <div className="top">The Hunger Games</div>
-          <div className="bottom" aria-hidden="true">The Hunger Games</div>
+          <h2>The Hunger Games</h2>
         </section>
       </div>
       <div className='container-login-button'>
