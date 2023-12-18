@@ -113,7 +113,7 @@
 }
 
 .game {
-  background-image: url('../../public/game.jpg');
+  background-image: url('../../public/backgrounds/game.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;

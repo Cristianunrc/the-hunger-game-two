@@ -42,13 +42,7 @@
   z-index: 1;
   color: white;
   font-size: 2em;
-  /* font-family: 'Silkscreen-Regular', sans-serif; */
 }
-
-/* @font-face {
-  font-family: 'Silkscreen-Regular';
-  src: url('../../public/Silkscreen-Regular.ttf') format('truetype');
-} */
   
 .winner-card::before {
   content: '';
