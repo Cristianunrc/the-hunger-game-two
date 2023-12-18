@@ -36,7 +36,7 @@
 
 @font-face {
   font-family: '8-bit';
-  src: url('../../public/fonts/8-bit.ttf') format('truetype'); /* Reemplaza con la ruta correcta y formato de archivo */
+  src: url('../../public/fonts/8-bit.ttf') format('truetype');
 }
 
 .ventana-emergente-container {
@@ -50,13 +50,13 @@
   justify-content: center;
   backdrop-filter: blur(10px); /* Aplicar un desenfoque al fondo */
   z-index: 1; /* Asegurarse de que esté detrás de la ventana emergente */
-  font-family: '8-bit', sans-serif; /* Aplicar la fuente 8-bit */
+  font-family: '8-bit', sans-serif;
 }
 
 .ventana-emergente {
   width: 80%;
-  max-width: 800px; /* Establecer un ancho máximo */
-  height: 60vh; /* Ajustar la altura según tus necesidades */
+  max-width: 800px;
+  height: 60vh;
   max-height: 600px;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
@@ -165,6 +165,7 @@
 
 .health-section {
   margin-top: 20px;
+  margin-left: -60px;
   font-family: 'Silkscreen-Regular', sans-serif;
 }
 
@@ -174,7 +175,11 @@
 }
 
 .health-bar-container {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.health-bar-container img {
+  height: 6vh;
 }
 
 .health-bar {

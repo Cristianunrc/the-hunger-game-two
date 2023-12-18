@@ -45,10 +45,10 @@ const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
 
       if (response.ok) {
         const responseData = await response.json();
-        const accessToken = responseData.access_token; // se recupera el token de acceso
-        localStorage.setItem('access_token', accessToken);
+        const accessToken = responseData.access_token; // se recupera el token de acceso desde api
 
-        onLogin(true);
+        localStorage.setItem('access_token', accessToken);
+        onLogin(true, username);
         onViewChange('init');
       } else {
         setLoginError('Invalid username or password');
@@ -73,7 +73,7 @@ const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
                 placeholder="Username"
                 value={username}
                 onChange={(e) => {
-                setUsername(e.target.value);
+                setUsername(e.target.value); // aqui se setea el username
                 setUsernameError('');
                 setLoginError('');
                 }}

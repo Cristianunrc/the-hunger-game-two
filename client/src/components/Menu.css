@@ -114,7 +114,7 @@
 
 @font-face {
   font-family: 'Silkscreen-Regular';
-  src: url('../../public/Silkscreen-Regular.ttf') format('truetype');
+  src: url('../../public/fonts/Silkscreen-Regular.ttf') format('truetype');
 }
 
 .incrementable-bar-atribute {

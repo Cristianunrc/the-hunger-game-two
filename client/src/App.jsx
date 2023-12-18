@@ -12,13 +12,15 @@ import './App.css';
 const App = () => {
   const [currentView, setCurrentView] = useState('init');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authenticatedUser, setAuthenticatedUser] = useState(null);
 
   const handleViewChange = (view) => {
     setCurrentView(view);
   };
 
-  const handleLogin = (status) => {
+  const handleLogin = (status, username) => {
     setIsLoggedIn(status);
+    setAuthenticatedUser(username);
   };
 
   useEffect(() => {
@@ -34,6 +36,9 @@ const App = () => {
           });
 
           if (response.ok) {
+            const responseData = await response.json();
+            const name = responseData.username
+            setAuthenticatedUser(name);
             setIsLoggedIn(true);
             setCurrentView('init');
           } else {
@@ -49,7 +54,7 @@ const App = () => {
   }, []);
   
   const views = {
-    init: () => <InitGame onViewChange={handleViewChange} isLoggedIn={isLoggedIn} onLogout={handleLogin} />,
+    init: () => <InitGame onViewChange={handleViewChange} isLoggedIn={isLoggedIn} onLogout={handleLogin} authenticatedUser={authenticatedUser} />,
     menu: () => <Menu onViewChange={handleViewChange} />,
     game: () => <Game onViewChange={handleViewChange} />,
     finish: () => <WinnerScreen onViewChange={handleViewChange} />,

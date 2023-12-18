@@ -69,7 +69,9 @@ class Login(Resource):
     def get(self):
         try:
             user_id = get_jwt_identity()
-            return {'message': 'Token de acceso válido', 'user_id': user_id}, 200
+            user = User.query.get(user_id)
+            if user: 
+                return {'message': 'Token de acceso válido', 'user_id': user_id, 'username': user.username}, 200
         except Exception as event:
             return {'error': 'Token de acceso no valido'}, 401
         

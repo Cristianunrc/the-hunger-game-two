@@ -4,6 +4,7 @@ import "./Logout.css";
 const Logout = ({ isLoggedIn, onLogout, onViewChange }) => {
   
   const handleLogout = async () => {
+   
     try {
       const accessToken = localStorage.getItem('access_token');
       
@@ -22,7 +23,7 @@ const Logout = ({ isLoggedIn, onLogout, onViewChange }) => {
 
       if (response.ok) {
         localStorage.removeItem('access_token');
-        onLogout(false);
+        onLogout(false, null);
         onViewChange('init');
       } else {
         console.error('Error al cerrar sesión:', response.status);

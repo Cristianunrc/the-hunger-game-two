@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './Header.css';
 
-const Header = ({ onViewChange }) => {
+const Header = ({ onViewChange, isLoggedIn, authenticatedUser }) => {
 
   const [volume, setVolume] = useState(0.2); 
   const audioRef = useRef(new Audio('/audio.mp3'));
@@ -65,6 +65,7 @@ const Header = ({ onViewChange }) => {
               <path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
           </div>
         </button>
+        {isLoggedIn && (<p>Hello hunger {authenticatedUser}!</p>)}
       </div>
     </header>
   );

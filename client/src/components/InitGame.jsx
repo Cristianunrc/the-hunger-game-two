@@ -4,7 +4,7 @@ import Footer from './Footer.jsx';
 import Logout from './Logout.jsx';
 import "./InitGame.css";
 
-const InitGame = ({ onViewChange, isLoggedIn, onLogout}) => {
+const InitGame = ({ onViewChange, isLoggedIn, onLogout, authenticatedUser }) => {
   const handlePlayGame = () => {
     onViewChange("menu");
   };
@@ -19,7 +19,7 @@ const InitGame = ({ onViewChange, isLoggedIn, onLogout}) => {
 
   return (
     <div className="init-render">
-      <Header onViewChange={onViewChange} /> 
+      <Header onViewChange={onViewChange} isLoggedIn={isLoggedIn} authenticatedUser={authenticatedUser} /> 
       <div className="video">      
         <video className='video-init' autoPlay muted loop playsInline>
           <source src="/video.mp4" type="video/mp4"/>

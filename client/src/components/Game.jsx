@@ -45,10 +45,10 @@ const Game = ({onViewChange}) => {
   //Estado distritos
   const [liveTribute, setLiveTribute] = useState([]);
   
-  // Salud de cada distrito
+  //Salud de cada distrito
   const [healthDistrict, setHealthDistrict] = useState([]); 
 
-  // Salud del distrito 0
+  //Salud del distrito 0
   const [healthDistrict0, setHealthDistrict0] = useState(0);
 
   //Estado del juego
@@ -63,6 +63,9 @@ const Game = ({onViewChange}) => {
   //Estado para obtener la apariencia del distrito ganador
   const { setWinnerCharacter } = useGame();
 
+  //Estado para obtener la apariencia de cada distrito
+  const { characters } = useGame();
+ 
   const [speed, setSpeed] = useState(1);
 
   const handleSpeedChange = (event) => {
@@ -182,7 +185,7 @@ const Game = ({onViewChange}) => {
       handleFinish();
     }
 
-    updateTimeInterval(); // Establecer el intervalo inicial
+    updateTimeInterval(); // Establece el intervalo inicial
 
     return () => {
       clearInterval(timeInterval);
@@ -197,6 +200,10 @@ const Game = ({onViewChange}) => {
             {healthDistrict.map((health, index) => (
               <div key={index} className="health-bar-container">
                 <p>District {index}</p>
+                <img
+                  src={characters[index]}
+                  className="district-image"
+                />
                 <div className="health-bar">
                   <div className="health-progress" style={{ width: `${Math.max(index === 0 ? (health / healthDistrict0) * 100 : (health / 200) * 100,  0)}%` }}>
                     <span className="health-value">{health}</span>

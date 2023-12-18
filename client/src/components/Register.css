@@ -63,7 +63,7 @@
   
 @font-face {
   font-family: 'HungerGames';
-  src: url('../../public/HungerGames.ttf') format('truetype');
+  src: url('../../public/fonts/HungerGames.ttf') format('truetype');
 }
   
 @keyframes fireAnimation {
