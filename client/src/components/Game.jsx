@@ -57,7 +57,7 @@ const Game = ({onViewChange}) => {
   //Estado para regular el fetch
   const [fetchGameData, setFetchGameData] = useState(true);
 
-  //Estado para obtener el id del juego actual, se obtiene de un contexto
+  //Estado para obtener el id del juego actual
   const { gameID, setGameID } = useGame();
 
   //Estado para obtener la apariencia del distrito ganador
@@ -182,7 +182,7 @@ const Game = ({onViewChange}) => {
     }
 
     if (!fetchGameData) {
-      handleFinish();
+      setTimeout(handleFinish, 1000);
     }
 
     updateTimeInterval(); // Establece el intervalo inicial

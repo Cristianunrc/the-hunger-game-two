@@ -1,7 +1,6 @@
 from app import db
 from marshmallow import Schema, fields
 
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
@@ -12,10 +11,6 @@ class User(db.Model):
     def __init__(self, username=None, password=None):
         self.username = username
         self.password = password
-  
-    # Representation of username to string.  
-    def __repr__(self):
-        return "<User %r>" % self.username
     
     # Return dictionary of columns
     def json(self):
