@@ -53,3 +53,10 @@
 .volume-button-off {
   margin-bottom: 20px;
 }
+
+.wellcome-msg p {
+  font-family: 'Creepster-Regular', sans-serif;
+  font-size: 45px; 
+  color: #800000;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); 
+}
