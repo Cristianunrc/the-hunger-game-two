@@ -42,7 +42,7 @@ const WinnerScreen = ({ onViewChange }) => {
       </div>
       <button className="button-restart-game" onClick={handleRestartGame}>Restart Game</button>
       <audio ref={audioRef} autoPlay>
-        <source src="/winner_district.wav" type="audio/wav" />
+        <source src="/sounds/winner_district.wav" type="audio/wav" />
       </audio>
     </div>
   );

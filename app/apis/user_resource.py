@@ -61,7 +61,8 @@ class Login(Resource):
             
             is_user_authenticated = True
             access_token = create_access_token(identity=user.id, expires_delta=timedelta(hours=5)) #se crea un token unico de acceso
-            return {'message': 'Inicio de sesión exitoso.','access_token': access_token}, 200
+            return {'message': 'Inicio de sesión exitoso.',
+                    'access_token': access_token}, 200
         else:
             return {'error': 'Nombre de usuario o constraseña incorrectos.'}, 401
 
@@ -71,7 +72,9 @@ class Login(Resource):
             user_id = get_jwt_identity()
             user = User.query.get(user_id)
             if user: 
-                return {'message': 'Token de acceso válido', 'user_id': user_id, 'username': user.username}, 200
+                return {'message': 'Token de acceso válido', 
+                        'user_id': user_id, 
+                        'username': user.username}, 200
         except Exception as event:
             return {'error': 'Token de acceso no valido'}, 401
         

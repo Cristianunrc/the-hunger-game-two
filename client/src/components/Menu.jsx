@@ -73,7 +73,6 @@ export default function Menu({ onViewChange }) {
   const [menu, setMenu] = useState({});
   // Estado para llevar el personaje seleccionado
   const { selectedCharacter, setSelectedCharacter } = useGame();
-  // Seteo el id del juego con la respuesta del POST
   const { setGameID } = useGame();
   // Busco los personajes ordenados para seleccionar el que quiero
   const { charactersOrdered } = useGame();

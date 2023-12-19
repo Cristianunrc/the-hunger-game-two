@@ -510,6 +510,16 @@ class GameLogic:
             district_life.append(total_life)
         
         return district_life
+    
+    # Calculate if each tribute of each district have or not a weapon.
+    def weapons_tributes(self):
+        weapons = []
+        for district in self.districts:
+            for tribute in district.tributes:
+                weapon_tribute = tribute.weapon
+                weapons.append(weapon_tribute)
+        return weapons
+
 
 class GameLogicSchema(Schema):
     from game.logic.district import DistrictSchema

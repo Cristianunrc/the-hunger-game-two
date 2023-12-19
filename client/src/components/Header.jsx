@@ -33,7 +33,7 @@ const Header = ({ onViewChange, isLoggedIn, authenticatedUser }) => {
       </a>
       <div className='audio-container'>
         <audio ref={audioRef} autoPlay loop>
-          <source src='/audio.mp3' type="audio/mp3" />
+          <source src='/sounds/audio.mp3' type="audio/mp3" />
         </audio>
         <button 
           className={volVisble}

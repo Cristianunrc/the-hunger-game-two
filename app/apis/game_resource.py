@@ -33,12 +33,16 @@ class Game(Resource):
         game_id = int(game_id)
         if 0 < game_id:
             current_game = games[game_id]
-            game_schema = GameLogicSchema()
-            game_controller = GameController()
-            health_district = game_controller.life_of_each_district(current_game)
+            schema = GameLogicSchema()
+            controller = GameController()
+            health_district = controller.life_of_each_district(current_game)
+            weapon_tribute = controller.weapon_tribute_district(current_game)
 
-            return {game_id: game_schema.dump(current_game),
-                    'health': health_district}
+            response = {game_id: schema.dump(current_game),
+                        'health': health_district,
+                        'weapon': weapon_tribute}
+            
+            return response
         else:
             return {'error': 'Game not found'}, 404
           
@@ -50,13 +54,14 @@ class Game(Resource):
             next_iteration = controller.get_one_iteration(current_game)
             live_district = controller.pause_method(current_game)
             health_district = controller.life_of_each_district(current_game)
-            
+            weapon_tribute = controller.weapon_tribute_district(current_game)
+
             response = {game_id: next_iteration,
                         'pause': live_district,
-                        'health': health_district}
+                        'health': health_district,
+                        'weapon': weapon_tribute}
             
             return response
         else:
             return {"error": "Game not found"}, 404
-            
-           
+                       

@@ -760,9 +760,21 @@ def test_set_parameters_valid_inputs():
         assert tribute.cowardice == 0
         assert tribute.district == DISTRICT_DEFAULT
 
+
 def test_district_lifes():
     game = GameLogic()
     game.set_parameters(70, 5, 6, 4, 3)
     game.configure_random_districts()
     list_district_life = game.district_lifes()
     assert list_district_life == [280, 200, 200, 200, 200, 200]
+
+
+def test_weapons_tributes():
+    game = GameLogic()
+    game.set_parameters(50, 25, 3, 4, 0)
+    for district in game.districts:
+        for tribute in district.tributes:
+            tribute.weapon = True
+    for district in game.districts:
+        for tribute in district.tributes:
+            assert tribute.weapon == True
