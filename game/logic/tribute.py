@@ -3,14 +3,14 @@ import random
 from marshmallow import Schema, fields
 
 MAX_LIFE_DEFAULT = 50
-LIFE_DEFAULT = 50
-
-FORCE_DEFAULT = 5
-
-ALLIANCE_DEFAULT = 3
-RANGE_DEFAULT = 1
-COWARDICE_DEFAULT = 0
 MAX_COWARDICE = 5
+
+LIFE_DEFAULT = 50
+FORCE_DEFAULT = 5
+ALLIANCE_DEFAULT = 3
+COWARDICE_DEFAULT = 0
+
+RANGE_DEFAULT = 1
 POSSIBLE_POSITIONS = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1),
                       (-2, 0), (2, 0), (0, -2), (0, 2), (-2, -1), (-2, 1), (-1, -2), (-1, 2),
                       (-2, -2), (-2, 2), (1, -2), (1, 2), (2, -1), (2, 1), (2, -2), (2, 2),
@@ -31,8 +31,8 @@ class Tribute:
         self.pos = None
         self.past_pos = None
         self.weapon = False
-        self.max_life = MAX_LIFE_DEFAULT
         self.enemy = None
+        self.max_life = MAX_LIFE_DEFAULT
         self.range = RANGE_DEFAULT
 
     @staticmethod
@@ -58,20 +58,10 @@ class Tribute:
         return str(self.name)
 
     def __eq__(self, other):
-        if not isinstance(other, Tribute):
-            return False
-        if self.name != other.name:
-            return False
-        if self.alliance != other.alliance:
-            return False
-        if self.force != other.force:
-            return False
-        if self.district != other.district:
-            return False
-        if self.life != other.life:
-            return False
-
-        return True
+        return (
+            isinstance(other, Tribute) and
+            all(getattr(self, attr) == getattr(other, attr) for attr in ['name', 'alliance', 'force', 'district', 'life'])
+        )
 
     # Method to attack a tribute
     def attack_to(self, tribute):
@@ -247,3 +237,4 @@ class TributeSchema(Schema):
     cowardice = fields.Integer()
     district = fields.Integer()
     pos = fields.Tuple((fields.Integer(), fields.Integer()), required=True)
+    # weapon = fields.Boolean()

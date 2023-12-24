@@ -65,6 +65,9 @@ const Game = ({onViewChange}) => {
 
   //Estado para obtener la apariencia de cada distrito
   const { characters } = useGame();
+
+  // const { charactersLife, setCharactersLife } = useGame();
+
  
   const [speed, setSpeed] = useState(1);
 
@@ -119,12 +122,15 @@ const Game = ({onViewChange}) => {
       const data = await response.json();
       const gameData = data[gameID];
       const health = data['health'];
+      // const lifes = data['lifes'];
 
       if (gameData && gameData.board) {
         setBoardState(gameData.board.board);
         setBoardSize(gameData.board.rows);
+        // setCharactersLife(lifes);
         setHealthDistrict(health); // seteo la salud de todos los distritos
         setHealthDistrict0(health[0]); // seteo la salud del distrito 0
+
       } else {
         console.error('La estructura de datos es incorrecta:', data);
       }
@@ -147,8 +153,11 @@ const Game = ({onViewChange}) => {
           const gameData = data[gameID];
           const pause = data['pause'];
           const health = data['health'];
+          // const lifes = data['lifes'];
+
           setLiveTribute(pause);
           setHealthDistrict(health);
+          // setCharactersLife(lifes);
           setBoardState(gameData.board.board);
           
           if (gameData.winner !== null) {
@@ -182,6 +191,7 @@ const Game = ({onViewChange}) => {
     }
 
     if (!fetchGameData) {
+      // se demora 1 sec antes de mostrar la pantalla del distrito ganador
       setTimeout(handleFinish, 1000);
     }
 

@@ -30,7 +30,7 @@ class GameController:
         return result
       
       # Return one list of number lives tributes for each district's 
-      def pause_method(self, current_game):
+      def pause_game(self, current_game):
           lives = current_game.tributes_lives()
           return lives
       
@@ -39,7 +39,7 @@ class GameController:
           district_life = current_game.district_lifes()
           return district_life
       
-      # Return one list of weapons of each tributes on each district's
-      def weapon_tribute_district(self, current_game):
-          weapons = current_game.weapons_tributes()
-          return weapons
+    #   def life_of_each_tribute(self, current_game):
+    #       lifes = current_game.live_and_dead_tributes()
+    #       return lifes
+      

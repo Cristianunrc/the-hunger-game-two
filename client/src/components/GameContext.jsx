@@ -9,6 +9,8 @@ export const GameProvider = ({ children }) => {
   const [characters, setCharacters] = useState(null);
   const [neutralCharacter, setNeutralCharacter] = useState(null);
   const [charactersOrdered, setCharactersOrdered] = useState(null);
+  // const [charactersLife, setCharactersLife] = useState([]);
+  // const [weaponsState, setWeaponsState] = useState([]);
 
   const contextValue = {
     gameID,
@@ -22,7 +24,11 @@ export const GameProvider = ({ children }) => {
     neutralCharacter,
     setNeutralCharacter,
     charactersOrdered,
-    setCharactersOrdered
+    setCharactersOrdered,
+    // charactersLife,
+    // setCharactersLife,
+    // weaponsState,
+    // setWeaponsState,
   };
 
   return (

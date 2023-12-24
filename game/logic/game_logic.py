@@ -491,16 +491,9 @@ class GameLogic:
             self.winner_district()
             return self
           
-    # Calculates the number of lives for each district's tributes.
+    # Return the number of lives tributes for each district's.
     def tributes_lives(self):
-        lives = []
-        for district in self.districts:
-            count = 0
-            for tribute in district.tributes:
-                count += 1
-            lives.append(count)
-
-        return lives
+        return [len(district.tributes) for district in self.districts]
 
     # Calculate the life of each district by sumatory of each life tributes per district's
     def district_lifes(self):
@@ -508,17 +501,17 @@ class GameLogic:
         for district in self.districts:
             total_life = sum(tribute.life for tribute in district.tributes)
             district_life.append(total_life)
-        
         return district_life
     
-    # Calculate if each tribute of each district have or not a weapon.
-    def weapons_tributes(self):
-        weapons = []
-        for district in self.districts:
-            for tribute in district.tributes:
-                weapon_tribute = tribute.weapon
-                weapons.append(weapon_tribute)
-        return weapons
+    # def live_and_dead_tributes(self):
+    #     life_of_tributes = []
+    #     for district in self.districts:
+    #         for tribute in district.tributes:
+    #             if tribute.is_alive():
+    #                 life_of_tributes.append((True, tribute))
+    #             else:
+    #                 life_of_tributes.append((False, tribute))
+    #     return life_of_tributes            
 
 
 class GameLogicSchema(Schema):
@@ -531,5 +524,4 @@ class GameLogicSchema(Schema):
     districts = fields.Nested(DistrictSchema, many=True)
     neutrals = fields.Nested(TributeSchema, many=True)
     winner = fields.Integer(allow_none=True)
-    lives = fields.List(fields.Integer)
     
