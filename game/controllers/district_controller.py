@@ -12,6 +12,5 @@ class DistrictController:
                         cowardice=COWARDICE_DEFAULT)
         schema = DistrictSchema()
         result = jsonify(schema.dump(district))
-        
         return result
     

@@ -28,7 +28,7 @@ const ControlsAdvance = memo(({ onPause, onBack, isPaused }) => {
   );
 });
 
-const Game = ({onViewChange}) => {
+const Game = ({ onViewChange }) => {
 
   //Tamaño del tablero
   const [boardSize, setBoardSize] = useState(20);

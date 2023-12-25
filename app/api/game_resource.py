@@ -12,7 +12,8 @@ class ConfigDistrict(Resource):
     
     def get(self):
         controller = DistrictController()
-        return controller.get_new_district()
+        default_district = controller.get_new_district()
+        return default_district
 
     @jwt_required()
     def post(self):
@@ -23,9 +24,10 @@ class ConfigDistrict(Resource):
         if isinstance(new_game, str):
             return {'error': new_game}, 400
         
-        game_id = get_jwt_identity() 
+        game_id = get_jwt_identity()
         games[game_id] = new_game
-        return {'game_id': game_id}    
+        response = {'game_id': game_id}
+        return response
 
 class Game(Resource):
 

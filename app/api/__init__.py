@@ -1,12 +1,12 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from app.apis.user_resource import Register, SelectPj, UserGet, Login, UserIdGet, Logout
-from app.apis.game_resource import ConfigDistrict, Game
+from app.api.user_resource import Register, SelectPj, UserGet, Login, UserIdGet, Logout
+from app.api.game_resource import ConfigDistrict, Game
 
 # Create a blueprint
-apis_bp = Blueprint('apis', __name__)
-api = Api(apis_bp)
+api_bp = Blueprint('api', __name__)
+api = Api(api_bp)
 
 # Routes
 api.add_resource(ConfigDistrict, '/district')
