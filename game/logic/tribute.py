@@ -1,6 +1,7 @@
 import random
 
 from marshmallow import Schema, fields
+from game.logic.cell import State
 
 MAX_LIFE_DEFAULT = 50
 MAX_COWARDICE = 5
@@ -110,8 +111,6 @@ class Tribute:
 
     # Moves a tribute to a specific position on the board.
     def move_to(self, x, y, board):
-        from game.logic.cell import State
-
         board.remove_tribute(self)
         if not (board.valid_pos(self.pos)):
             raise ValueError(f'Position no valid')
@@ -137,9 +136,7 @@ class Tribute:
 
     # Method to determine the cells that are free within a two-cell distance
     def get_neighbors_2_distance_free(self, board):
-        from game.logic.cell import State
         neighbors = []
-
         possible_neighbors = self.get_neighbors_2_distance(board)
 
         for pos in possible_neighbors:
@@ -179,6 +176,7 @@ class Tribute:
             y_escape = [tribute_y - 2, tribute_y - 1, tribute_y]
         else:
             y_escape = [tribute_y + 2, tribute_y + 1, tribute_y]
+        
         return x_escape, y_escape
 
     # Method for calculate the best escape for a tribute with cowardice
@@ -198,8 +196,7 @@ class Tribute:
     # Returns the positions visible to an tribute within an certain range.
     def tribute_vision_pos(self, board):
         visible_positions = []
-        row = self.pos[0]
-        column = self.pos[1]
+        row, column = self.pos
         # Checks adjacent cells within a 3 radius.
         for dr, dc in POSSIBLE_POSITIONS:
             new_row, new_column = row + dr, column + dc
@@ -209,8 +206,9 @@ class Tribute:
 
     # Returns the list of visible cells for a tribute.
     def tribute_vision_cells(self, board):
-        if not (0 <= self.pos[0] < board.rows) or not (0 <= self.pos[1] < board.columns):
-            raise ValueError(f"Coordinates ({self.pos[0]}, {self.pos[1]}) are out of bounds")
+        x, y = self.pos
+        if not (0 <= x < board.rows and 0 <= y < board.columns):
+            raise ValueError(f"Coordinates ({x}, {y}) are out of bounds")
 
         list_pos = self.tribute_vision_pos(board)
         tribute_vision_cells = []
@@ -238,3 +236,4 @@ class TributeSchema(Schema):
     district = fields.Integer()
     pos = fields.Tuple((fields.Integer(), fields.Integer()), required=True)
     # weapon = fields.Boolean()
+    

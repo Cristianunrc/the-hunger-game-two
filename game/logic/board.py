@@ -113,8 +113,7 @@ class Board:
 
     # Removes a tribute from the board.
     def remove_tribute(self, tribute):
-        x = tribute.pos[0]
-        y = tribute.pos[1]
+        x, y = tribute.pos
         self.board[x][y].remove_tribute()
 
     # Places an item object at a specific position on the board.
@@ -124,8 +123,7 @@ class Board:
 
     # Removes an item object from the board.
     def remove_item(self, item):
-        x = item.pos[0]
-        y = item.pos[1]
+        x, y = item.pos
         self.board[x][y].remove_item()
 
     # Distributes the tributes from a district to random positions on the board.
@@ -205,7 +203,6 @@ class Board:
         adjacent_positions = []
 
         # Define the directions for adjacent cells, including the corners.
-
         for dr, dc in DIRECTIONS:
             new_row, new_column = row + dr, column + dc
 
@@ -216,20 +213,13 @@ class Board:
 
     # Check if a position on the board is valid and free.
     def valid_pos(self, pos):
-        x = pos[0]
-        y = pos[1]
-        if x < 0 or x >= self.rows:
-            return False
-        if y < 0 or y >= self.columns:
-            return False
-        if self.get_element(x, y).get_state() == State.TRIBUTE:
-            return False
-
-        return True
+        x, y = pos
+        return 0 <= x < self.rows and 0 <= y < self.columns and \
+            self.get_element(x, y).get_state() != State.TRIBUTE
 
     # Get the adjacent cells to a specific position on the board.
     def get_adjacents_cells(self, x, y):
-        if not (0 <= x < self.rows) or not (0 <= y < self.columns):
+        if not (0 <= x < self.rows and 0 <= y < self.columns):
             raise ValueError(f"Coordinates ({x}, {y}) are out of bounds")
 
         list_pos = self.get_adjacent_positions(x, y)
@@ -244,7 +234,7 @@ class Board:
 
     # Get the free adjacent cells to a specific position on the board.
     def get_free_adjacents_cells(self, x, y):
-        if x < 0 or x >= self.rows or y < 0 or y >= self.columns:
+        if not (0 <= x < self.rows and 0 <= y < self.columns):
             raise ValueError(f"Invalid position: x={x}, y={y} is out of range.")
 
         adjacents_cells = self.get_adjacents_cells(x, y)
@@ -256,7 +246,7 @@ class Board:
 
     # Get the adjacent positions to a specific position on the board.
     def get_free_adjacents_positions(self, x, y):
-        if x < 0 or x >= self.rows or y < 0 or y >= self.columns:
+        if not (0 <= x < self.rows and 0 <= y < self.columns):
             raise ValueError(f"Invalid position: x={x}, y={y} is out of range.")
 
         free_positions = []
@@ -273,8 +263,7 @@ class Board:
     # Makes a random choice of a free adjacent position for a tribute without
     # considering the tribute's previous position.
     def random_choice(self, tribute):
-        x = tribute.pos[0]
-        y = tribute.pos[1]
+        x, y = tribute.pos
         free_adjacents_pos = self.get_free_adjacents_positions(x, y)
 
         if tribute.past_pos in free_adjacents_pos:

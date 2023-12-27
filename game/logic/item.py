@@ -1,7 +1,5 @@
 from marshmallow import Schema, fields
 
-POTION_LIFE_EFFECT = 10
-
 POTION_LIFE = 10
 POTION_FORCE = 5
 POTION_POISON = 5
@@ -10,9 +8,9 @@ WEAPON_EFFECT = 5
 
 SWORD_EFFECT = 5
 SPEAR_EFFECT = 3
-RANGE_SPEAR = 1
-
 BOW_EFFECT = 1
+
+RANGE_SPEAR = 1
 RANGE_BOW = 2
 
 
@@ -60,11 +58,11 @@ class Potion(Item):
     def apply_effect(self, tribute):
         if tribute.life == tribute.max_life:
             tribute.life += 0
-        if tribute.life + POTION_LIFE_EFFECT > tribute.max_life:
+        if tribute.life + POTION_LIFE > tribute.max_life:
             effect = tribute.max_life - tribute.life
             tribute.life += effect
-        if tribute.life + POTION_LIFE_EFFECT < tribute.max_life:
-            tribute.life += POTION_LIFE_EFFECT
+        if tribute.life + POTION_LIFE < tribute.max_life:
+            tribute.life += POTION_LIFE
 
     def create_potion(self, num_potion):
         pass

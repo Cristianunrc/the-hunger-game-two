@@ -1,10 +1,8 @@
 import pytest
 
 from game.logic.tribute import Tribute, LIFE_DEFAULT, FORCE_DEFAULT
-from game.logic.item import BOW_EFFECT, SPEAR_EFFECT, Item, Potion, PotionForce, PotionLife, PotionPoison, Weapon, \
-    Sword, Spear, Bow
-from game.logic.item import POTION_LIFE_EFFECT, POTION_FORCE, POTION_LIFE, POTION_POISON, SWORD_EFFECT
-
+from game.logic.item import BOW_EFFECT, SPEAR_EFFECT, Item, Potion, PotionForce, PotionLife, PotionPoison, \
+    Weapon, Sword, Spear, Bow, POTION_FORCE, POTION_LIFE, POTION_POISON, SWORD_EFFECT
 
 def test_create_potion_from_str():
     res = Item.from_string('p ')
@@ -22,7 +20,7 @@ def test_potion_apply_effect():
     tribute.max_life = 100
     potion = Potion()
     potion.apply_effect(tribute)
-    assert tribute.life.__eq__(75 + POTION_LIFE_EFFECT)
+    assert tribute.life.__eq__(75 + POTION_LIFE)
 
     tribute1 = Tribute()
     tribute1.life = 100

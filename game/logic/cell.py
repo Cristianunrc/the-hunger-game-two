@@ -38,7 +38,7 @@ class Cell:
     # Get tribute of a cell
     def get_tribute(self):
         if self.tribute is None:
-            raise ValueError(f"No attributes in this position")
+            raise ValueError(f"No tribute in this position")
 
         return self.tribute
 
@@ -56,7 +56,7 @@ class Cell:
     # Method to put a tribute in a cell
     def put_tribute(self, tribute):
         if self.state == TRIBUTE:
-            raise ValueError(f"Trying to place one Tribute on top of another.")
+            raise ValueError(f"Trying to place one Tribute on top of another")
 
         self.state = TRIBUTE
         self.tribute = tribute
@@ -64,7 +64,7 @@ class Cell:
     # Method to remove a tribute in a cell
     def remove_tribute(self):
         if self.get_state() == ITEM or self.get_state() == FREE:
-            raise ValueError(f"Trying to remove one Item or the cell is FREE.")
+            raise ValueError(f"Trying to remove one Item or the cell is FREE")
 
         self.tribute.past_pos = self.tribute.pos
         self.state = FREE
@@ -74,7 +74,7 @@ class Cell:
     def put_item(self, item):
         if self.state != FREE:
             raise ValueError(
-                f"Trying to place one Item on top of another or over an Tribute."
+                f"Trying to place one Item on top of another or over an Tribute"
             )
 
         self.state = ITEM
@@ -83,7 +83,7 @@ class Cell:
     # Method to remove a item in a cell
     def remove_item(self):
         if self.item is None:
-            raise ValueError(f"Trying to remove a Item where there isn't one.")
+            raise ValueError(f"Trying to remove an item where there isn't one")
         if self.tribute is None:
             self.state = FREE
 
