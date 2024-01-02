@@ -29,15 +29,12 @@ const About = ({ onViewChange }) => {
         <div className="image-container">
           {images.map((image, index) => (
             <div key={index} className="image-item">
-              <h3>ITEMS</h3>
               <img src={image.url} alt={image.alt} />
               <p>{image.description}</p>
             </div>
           ))}
         </div>
-        <button className="custom-button" onClick={handleGoToInitGame}>
-        Back to menu
-          </button>
+        <button onClick={handleGoToInitGame}>Back to menu</button>
       </div>
     </div>
   );
