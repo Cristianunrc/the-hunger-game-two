@@ -135,7 +135,7 @@ export default function Menu({ onViewChange }) {
       if (selectedCharacter == null) {
         alert("You must select a character before starting the game.");
       } else {
-        alert("You must distribute all statistics before starting the game.");
+        alert("You must distribute all stats before starting the game.");
       }
     } else {
       sendDataToServer();
@@ -234,21 +234,21 @@ export default function Menu({ onViewChange }) {
           </strong> 
         </div>
         <div className="choose-character-container">
-        {Object.keys(Characters).map((characterKey) => (
-          <CharacterCard
-            key={characterKey}
-            characterKey={characterKey}
-            image={Characters[characterKey]}
-            isSelected={selectedCharacter === characterKey}
-            onSelect={() =>setSelectedCharacter(characterKey)}
-          />
-        ))}
-      </div>
+          {Object.keys(Characters).map((characterKey) => (
+            <CharacterCard
+              key={characterKey}
+              characterKey={characterKey}
+              image={Characters[characterKey]}
+              isSelected={selectedCharacter === characterKey}
+              onSelect={() =>setSelectedCharacter(characterKey)}
+            />
+          ))}
+        </div>
         <div className="bars-container">
           {Object.entries(stats).map(([key, { attribute, bar, increases, consumes }]) => (
             <IncrementableBar
               key={key}
-              attribute={`${attribute}:`}
+              attribute={`${attribute}`}
               stats={bar}
               onDecrement={() => decrementStat(key, increases, consumes)}
               onIncrement={() => incrementStat(key, increases, consumes)}
