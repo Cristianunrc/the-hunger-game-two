@@ -38,13 +38,13 @@ Una vez que hayas clonado la aplicación y estés ubicado en el directorio corre
 
     _Esto abrirá la consola de python, en la misma ejecuta el siguiente script:_
 
-    `import app`
-    `from app import db, create_app`
-    `app = create_app()`
-    `with app.app_context():`
-    `db.create_all()`
+    import app
+    from app import db, create_app
+    app = create_app()
+    with app.app_context():
+    db.create_all()
 
-    _Al escribir el script presiona dos veces enter._
+    _Luego de escribir el script presiona dos veces enter._
 
     _Esto creará una carpeta instance/db_user.db, con la base de datos.
 
