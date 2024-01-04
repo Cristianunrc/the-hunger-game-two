@@ -38,17 +38,17 @@ Una vez que hayas clonado la aplicación y estés ubicado en el directorio corre
 
     _Esto abrirá la consola de python, en la misma ejecuta el siguiente script:_
 
-    import app_
+    `import app`
     
-    from app import db, create_app
+    `from app import db, create_app`
     
-    app = create_app()
+    `app = create_app()`
     
-    with app.app_context():
+    `with app.app_context():`
     
-    db.create_all()
+    `db.create_all()`
 
-    _Luego de escribir el script presiona dos veces enter. Esto creará una carpeta instance/db_user.db.
+    Luego de escribir el script presiona dos veces enter. Esto creará una carpeta instance/db_user.db
 
 
 ## Para poder levantar la aplicación y jugar deberás realizar los siguientes pasos
