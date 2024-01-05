@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Register.css';
+import '../styles/Register.css';
 
 const Register = ({ onViewChange, isLoggedIn }) => {
   const [username, setUsername] = useState('');

@@ -1,6 +1,6 @@
 import React from 'react';
-import './About.css';
 import gameInfo from './gameInfo.json';
+import '../styles/About.css';
 
 const About = ({ onViewChange }) => {
   const { title, content } = gameInfo;

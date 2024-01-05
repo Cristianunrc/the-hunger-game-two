@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./Login.css";
+import '../styles/Login.css';
 
 const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
   const [username, setUsername] = useState('');

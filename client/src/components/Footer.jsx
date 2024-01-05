@@ -1,6 +1,6 @@
 import React from 'react';
-import './Footer.css';
-import './Common.css';
+import '../styles/Footer.css';
+import '../styles/Common.css';
 
 export default function Footer({ onViewChange }) {
   const handleRegisterClick = () => {

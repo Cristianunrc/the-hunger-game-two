@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { act } from 'react-dom/test-utils';
 import { useGame } from "./GameContext";
 import { IncrementableBar, StatsBar } from "./IncrementableBar";
-import "./Menu.css";
-import "./Common.css";
+import '../styles/Menu.css';
+import '../styles/Common.css';
 
 function InitGameButton({ isReady, onClick }) {
   const initSimulationButtonClass = isReady ? 'init-simulation-button is-ready' : 'init-simulation-button';

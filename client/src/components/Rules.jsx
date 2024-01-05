@@ -1,6 +1,6 @@
 import React from 'react';
 import rulesInfo from './rulesInfo.json';
-import "./Rules.css";
+import '../styles/Rules.css';
 
 const Rules = ({ onViewChange }) => {
   const { title, content } = rulesInfo;

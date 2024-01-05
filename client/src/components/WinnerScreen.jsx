@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useGame } from "./GameContext";
-import './WinnerScreen.css';
-import "./Common.css";
+import '../styles/WinnerScreen.css';
+import '../styles/Common.css';
 
 const WinnerScreen = ({ onViewChange }) => {
   const audioRef = useRef(null);

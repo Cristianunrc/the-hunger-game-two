@@ -6,7 +6,7 @@ import {
 } from "react-zoom-pan-pinch";
 import Board from "./Board.jsx";
 import { useGame } from "./GameContext";
-import './Game.css';
+import '../styles/Game.css';
 
 const ControlsZoom = () => {
   const { zoomIn, zoomOut, resetTransform } = useControls();

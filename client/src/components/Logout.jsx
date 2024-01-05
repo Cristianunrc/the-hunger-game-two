@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Logout.css";
+import '../styles/Logout.css';
 
 const Logout = ({ isLoggedIn, onLogout, onViewChange }) => {
   

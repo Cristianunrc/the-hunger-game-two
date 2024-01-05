@@ -1,6 +1,6 @@
 import React from "react";
 import Cell from './Cell';
-import "./Board.css";
+import '../styles/Board.css';
 
 const Board = ({ size, boardState }) => {
   const extraCells = 3;
