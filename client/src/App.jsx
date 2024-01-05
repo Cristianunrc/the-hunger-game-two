@@ -7,7 +7,7 @@ import Register from './components/Register.jsx';
 import Rules from './components/Rules.jsx';
 import About from './components/About.jsx';
 import Login from './components/Login.jsx';
-import './App.css';
+import './styles/App.css';
 
 const App = () => {
   const [currentView, setCurrentView] = useState('init');
