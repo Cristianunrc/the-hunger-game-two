@@ -210,10 +210,7 @@ const Game = ({ onViewChange }) => {
             {healthDistrict.map((health, index) => (
               <div key={index} className="health-bar-container">
                 <p>District {index}</p>
-                <img
-                  src={characters[index]}
-                  className="district-image"
-                />
+                <img src={characters[index]} className="district-image" />
                 <div className="health-bar">
                   <div className="health-progress" style={{ width: `${Math.max(index === 0 ? (health / healthDistrict0) * 100 : (health / 200) * 100,  0)}%` }}>
                     <span className="health-value">{health}</span>

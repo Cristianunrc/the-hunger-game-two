@@ -4,7 +4,7 @@ class GameController:
       # Set up a game.  
       def get_game(self, data):
         game = GameLogic()
-        game.new_game(20, 20)
+        game.new_game(15, 15)
         try:
             game.set_parameters(data['life'], data['force'], data['alliance'], data['cant_tributes'], data['cowardice'])
         except ValueError as event:
