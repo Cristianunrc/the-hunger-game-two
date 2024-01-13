@@ -67,7 +67,6 @@ const Game = ({ onViewChange }) => {
   const { characters } = useGame();
 
   // const { charactersLife, setCharactersLife } = useGame();
-
  
   const [speed, setSpeed] = useState(1);
 
@@ -204,6 +203,7 @@ const Game = ({ onViewChange }) => {
 
   return (
     <main className="game">
+      <div className="background"></div>
       <div className="game-container">
         <div className="health-section">
           <h2>Health Districts</h2>

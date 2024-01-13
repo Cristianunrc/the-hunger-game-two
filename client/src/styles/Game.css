@@ -112,13 +112,17 @@
   cursor: pointer;
 }
 
-.game {
-  background-image: url('../../public/backgrounds/game.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-  margin: 0;
+.game .background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('../../public/backgrounds/game.jpg') center/cover no-repeat fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+  transition: filter 0.5s ease-in-out;
+  filter: blur(0px);
 }
 
 .game-container {
