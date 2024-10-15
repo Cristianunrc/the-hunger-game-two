@@ -1,16 +1,10 @@
 import pytest
 
-from game.logic.board import Board
-from game.logic.tribute import Tribute
-from game.logic.item import Weapon
-from game.logic.cell import State
-
-def new_tribute():
-    return Tribute()
+from .utils import new_board, new_tribute, new_weapon, state_free, state_tribute
 
 def test_create_tribute_error():
     with pytest.raises(ValueError):
-        res = Tribute.from_string('-')
+        res = new_tribute().from_string('-')
 
 def test_tribute_is_dead_or_is_alive():
     tribute = new_tribute()
@@ -35,7 +29,7 @@ def test_set_config_parameters_tribute():
     assert tribute.cowardice == 3
 
 def test_attack_to():
-    board = Board(3, 3)
+    board = new_board(3, 3)
     t1 = new_tribute()
     t2 = new_tribute()
     t3 = new_tribute()
@@ -74,38 +68,38 @@ def test_generates_alliance_value():
     assert (tribute1.generates_alliance_value(tribute1.alliance, neutral_value)) is False
 
 def test_move_to_random():
-    board = Board(3, 3)
+    board = new_board(3, 3)
     tribute = new_tribute()
     board.put_tribute(1, 1, tribute)
     initial_pos = board.get_pos(tribute)
     tribute.move_to_random(board)
     new_pos = board.get_pos(tribute)
-    assert board.get_element(initial_pos[0], initial_pos[1]).get_state() == State.FREE
+    assert board.get_element(initial_pos[0], initial_pos[1]).get_state() == state_free()
     assert initial_pos != new_pos
-    assert board.get_element(new_pos[0], new_pos[1]).get_state() == State.TRIBUTE
+    assert board.get_element(new_pos[0], new_pos[1]).get_state() == state_tribute()
     assert tribute.pos == new_pos
     assert initial_pos != new_pos
 
 def test_move_to():
-    board = Board(3, 3)
+    board = new_board(3, 3)
     tribute = new_tribute()
     board.put_tribute(1, 1, tribute)
     initial_pos = board.get_pos(tribute)
     x, y = 0, 2
     tribute.move_to(x, y, board)
     new_pos = board.get_pos(tribute)
-    assert board.get_element(initial_pos[0], initial_pos[1]).get_state() == State.FREE
+    assert board.get_element(initial_pos[0], initial_pos[1]).get_state() == state_free()
     assert initial_pos != new_pos
     assert (new_pos[0], new_pos[1]) == (x, y)
-    assert board.get_element(x, y).get_state() == State.TRIBUTE
+    assert board.get_element(x, y).get_state() == state_tribute()
     assert tribute.pos == new_pos
     tribute2 = new_tribute()
     board.put_tribute(1, 1, tribute2)
-    board.put_item(2, 2, Weapon())
+    board.put_item(2, 2, new_weapon())
     tribute2.move_to(2, 2, board)
 
 def test_move_closer_to():
-    board = Board(5, 5)
+    board = new_board(5, 5)
     tribute = new_tribute()
     board.put_tribute(1, 1, tribute)
     (x, y) = tribute.return_clossest(1, 2, board)
@@ -120,7 +114,7 @@ def test_move_closer_to():
     assert tribute.pos == (4, 4)
 
 def test_tribute_vision_pos():
-    board = Board(7, 7)
+    board = new_board(7, 7)
     t1 = new_tribute()
     t1.pos = (3, 3)
     visible_positions = t1.tribute_vision_pos(board)
@@ -137,14 +131,14 @@ def test_tribute_vision_pos():
                 assert (x, y) in visible_positions
 
 def test_tribute_vision_pos_with_tribute_in_border():
-    board = Board(7, 7)
+    board = new_board(7, 7)
     t1 = new_tribute()
     t1.pos = (0, 0)
     visible_positions = t1.tribute_vision_pos(board)
     assert len(visible_positions) == 15
 
 def test_neighbors():
-    board = Board(5, 5)
+    board = new_board(5, 5)
     t1 = new_tribute()
     board.put_tribute(2, 2, t1)
     neighbors = t1.get_neighbors_2_distance_free(board)
@@ -155,7 +149,7 @@ def test_neighbors():
     assert len(neighbors) == 15
 
 def test_calculate_flee():
-    board = Board(5, 5)
+    board = new_board(5, 5)
     t0 = new_tribute()
     t0.set_config_parameters(50, 5, 3, 0, 0)
     board.put_tribute(0, 0, t0)
