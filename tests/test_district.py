@@ -1,10 +1,8 @@
 import pytest
 
-from game.logic.district import District
-from game.logic.tribute import Tribute, LIFE_DEFAULT, COWARDICE_DEFAULT
+from .utils import new_district, new_tribute
+from game.logic.tribute import LIFE_DEFAULT, COWARDICE_DEFAULT
 
-def new_district():
-    return District()
 
 def test_set_config_tributes():
     district = new_district()
@@ -30,7 +28,7 @@ def test_set_config_random_tributes():
 def test_add_tribute_valid():
     district = new_district()
     district.cant_tributes = 0
-    tribute = Tribute()
+    tribute = new_tribute()
     district.add_tribute(tribute)
     assert tribute in district.tributes
 
@@ -42,7 +40,7 @@ def test_add_tribute_invalid():
 
 def test_remove_tribute():
     district = new_district()
-    t1 = Tribute()
+    t1 = new_tribute()
     district.cant_tributes = 0
     district.add_tribute(t1)
     assert len(district.tributes) == 1
