@@ -12,15 +12,14 @@ def app():
         db.session.remove()
         db.drop_all()
 
-
 def test_add_user_and_select_pj(app):
     with app.app_context():
         user = User(username='Lucas', password='RayoDeSol')
         user.add_user('Lucas', 'RayoDeSol')
-        retrieved_user = User.query.filter_by(username='Lucas').first()
-        assert retrieved_user is not None
-        assert retrieved_user.username == 'Lucas'
-        assert retrieved_user.password == 'RayoDeSol'
+        response = User.query.filter_by(username='Lucas').first()
+        assert response is not None
+        assert response.username == 'Lucas'
+        assert response.password == 'RayoDeSol'
         user = User.query.filter_by(username='Lucas').first()
         assert user is not None
         user.select_character(2)
@@ -28,14 +27,13 @@ def test_add_user_and_select_pj(app):
         assert selected_user is not None
         assert int(selected_user.character) == 2
 
-
 def test_get_user_id(app):
     with app.app_context():
         user = User()
         user.add_user('Lucas', 'RayoDeSol')
-        user_1 = User.query.filter_by(username='Lucas').first()
-        assert user_1.get_id() == 1
+        user_one = User.query.filter_by(username='Lucas').first()
+        assert user_one.get_id() == 1
         user = User()
         user.add_user('Maik', 'Casita')
-        user_2 = User.query.filter_by(username='Maik').first()
-        assert user_2.get_id() == 2
+        user_two = User.query.filter_by(username='Maik').first()
+        assert user_two.get_id() == 2
