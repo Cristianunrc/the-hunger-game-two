@@ -1,15 +1,11 @@
 import pytest
 
-from game.logic.cell import State
 from game.logic.game_logic import GameLogic, GameMode
-from game.logic.item import Bow, Potion, PotionForce, PotionLife, PotionPoison, Spear, Sword, Weapon
-from game.logic.tribute import Tribute
-from game.logic.district import District, DISTRICT_DEFAULT
+from game.logic.district import DISTRICT_DEFAULT
 from main import init_simulation
-
 from .utils import new_tribute, new_weapon, new_potion, new_district, state_free, \
-    state_item, state_tribute, new_weapon_sword, new_weapon_spear, new_weapon_bow, \
-    new_potion_poision, new_potion_force, new_potion_life 
+    state_tribute, new_weapon_sword, new_weapon_spear, new_weapon_bow, new_potion_poision, \
+    new_potion_force, new_potion_life
 
 @pytest.fixture
 def game():
