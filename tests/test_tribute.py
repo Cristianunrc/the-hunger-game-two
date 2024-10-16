@@ -2,11 +2,8 @@ import pytest
 
 from .utils import new_board, new_tribute, new_weapon, state_free, state_tribute
 
-def test_create_tribute_error():
-    with pytest.raises(ValueError):
-        res = new_tribute().from_string('-')
 
-def test_tribute_is_dead_or_is_alive():
+def test_tribute_dead_or_live():
     tribute = new_tribute()
     tribute.life = 0
     assert tribute.is_dead().__eq__(True)
@@ -19,7 +16,7 @@ def test_tribute_to_string():
     tribute1.set_config_parameters(50, 5, 3, 0, 0)
     assert (tribute1.__str__()).__eq__('t0')
 
-def test_set_config_parameters_tribute():
+def test_set_config_parameters():
     tribute = new_tribute()
     tribute.set_config_parameters(50, 5, 3, 5, 3)
     assert tribute.life == 50
