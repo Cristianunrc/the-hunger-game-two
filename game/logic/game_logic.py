@@ -1,5 +1,4 @@
 from enum import Enum
-
 from game.logic.board import Board
 from game.logic.tribute import (
     LIFE_DEFAULT,
@@ -44,8 +43,8 @@ class GameLogic:
     def to_string(self):
         return self.board.__str__()
 
-    # Method to add a tribute in a game
-    # "tribute" is the tribute configured
+    # Method to add a tribute in a game.
+    # tribute param is configured.
     # Row and Column are the position of tribute
     def put_tribute(self, row, column, tribute):
         district = tribute.district
@@ -67,7 +66,6 @@ class GameLogic:
             self.neutrals.remove(tribute)
         else:
             self.districts[tribute.district].remove_tribute(tribute)
-
         self.board.remove_tribute(tribute)
 
     # Places an Item at a specific position on the board.
@@ -103,14 +101,13 @@ class GameLogic:
         occupied_cells.sort(key=lambda cell: self.calculate_distance(cell, tribute))
         if not occupied_cells:
             return False
-
         return occupied_cells[0]
 
     # Returns the distance between a cell and a tribute.
     def calculate_distance(self, cell, tribute):
         distance = (
-                           (cell.get_pos()[0] - tribute.pos[0]) ** 2
-                           + (cell.get_pos()[1] - tribute.pos[1]) ** 2
+                        (cell.get_pos()[0] - tribute.pos[0]) ** 2 + 
+                        (cell.get_pos()[1] - tribute.pos[1]) ** 2
                    ) ** 0.5
         if cell.get_state() == State.ITEM:
             if cell.get_item() == Weapon():
@@ -120,7 +117,6 @@ class GameLogic:
         elif cell.get_state() == State.TRIBUTE:
             if cell.get_tribute().district is None:
                 distance -= 0.001
-
         return distance
 
     # Returns the occupied cells in the vision of the tribute.
@@ -134,7 +130,6 @@ class GameLogic:
                     cell.get_tribute().district != tribute.district
             )
         ]
-
         if tribute.weapon:
             occupied_cells = [
                 cell
@@ -142,7 +137,6 @@ class GameLogic:
                 if cell.state == State.ITEM and cell.get_item().is_weapon() is False
                    or cell.state == State.TRIBUTE
             ]
-
         return occupied_cells
 
     # Simulates combat between two tributes, moving 'tribute' towards 'tribute2'
@@ -182,7 +176,7 @@ class GameLogic:
             tribute.step_to(self.board, pos)
 
     # Method to use after the alliance is True
-    # "Tribute" is the neutral tribute who accept the alliance
+    # The param tribute is the neutral tribute who accept the alliance
     def alliance_neutral(self, tribute, district):
         tribute.district = district.get_number_district()
         district.asign_name_tribute(tribute)
@@ -309,7 +303,6 @@ class GameLogic:
     def order_attack(self):
         for i in range(len(self.districts)):
             self.order.append(i)
-
         return self.order
 
     # Method to execute all iteration for an game.
@@ -333,7 +326,6 @@ class GameLogic:
             COWARDICE_DEFAULT,
             DISTRICT_DEFAULT,
         )
-
         district.set_config(
             life, force, alliance, number_district, cant_tributes, cowardice
         )
@@ -408,29 +400,20 @@ class GameLogic:
                     self.winner = self.districts[i].number_district
         return self.winner
 
-    # Set stats of own district. Front use this method.
+    # Set each stats of own district.
     def set_parameters(self, life, force, alliance, cant_tributes, cowardice):
         try:
-            # check if any stat is not an int
             life = int(life)
             force = int(force)
             alliance = int(alliance)
             cant_tributes = int(cant_tributes)
             cowardice = int(cowardice)
-
-            # Check if any stat is out of valid range
             self.validate_range(life, force, alliance, cant_tributes, cowardice)
-
-            # check if life is multiple of 5 and force is odd
             self.validate_life_and_force(life, force)
-
-            # calculate points based on default value stat and received values
             self.calculate_points(life, force, alliance, cant_tributes, cowardice)
-
             district = District()
             district.set_config(life, force, alliance, DISTRICT_DEFAULT, cant_tributes, cowardice)
             self.districts.insert(0, district)
-
         except ValueError as event:
             raise ValueError(str(event))
         
@@ -447,11 +430,10 @@ class GameLogic:
         if not (0 <= cowardice <= 5):
             raise ValueError("Invalid input cowardice.")
 
-    # check if life is multiple of 5 and force is odd
+    # Check if life is five multiple and force is odd
     def validate_life_and_force(self, life, force):
         if (life - 50) % 5 != 0:
             raise ValueError("Invalid input in stats.")
-
         if (force % 2) != 1:
             raise ValueError("Invalid input in stats.")
         
@@ -462,24 +444,22 @@ class GameLogic:
         alliance_points = alliance - 3
         tributes_points = (cant_tributes - 4) * 4
         cowardice_points = cowardice
-
-        # check if total points is equal to 10
         total_points = life_points + force_points + alliance_points + tributes_points + cowardice_points
         if total_points != 10:
             raise ValueError(f"Invalid input, distribute exactly 10 points. Points can't be {total_points}")
 
-    # Distribute items on board. Front use this method
+    # Distribute items on board.
     def distribute_items(self):
         self.board.distribute_potions()
         self.board.distribute_weapons()
 
-    # Distribute all districts of tributes on board. Fron use this method
+    # Distribute all districts of tributes on board.
     def distribute_district_tributes(self):
         for i in range(len(self.districts)):
             self.board.distribute_tributes(self.districts[i])
 
-    # Execute one iteration for each tribute of districts. Finalize when exists just one live distric.
-    # Front use this method.
+    # Execute one iteration for each tribute of districts.
+    # Finalize when exists just one live district.
     def one_iteration_front(self):
         while not self.game_ended():
             for district in self.districts:
@@ -524,4 +504,3 @@ class GameLogicSchema(Schema):
     districts = fields.Nested(DistrictSchema, many=True)
     neutrals = fields.Nested(TributeSchema, many=True)
     winner = fields.Integer(allow_none=True)
-    
