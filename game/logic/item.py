@@ -3,13 +3,10 @@ from marshmallow import Schema, fields
 POTION_LIFE = 10
 POTION_FORCE = 5
 POTION_POISON = 5
-
 WEAPON_EFFECT = 5
-
 SWORD_EFFECT = 5
 SPEAR_EFFECT = 3
 BOW_EFFECT = 1
-
 RANGE_SPEAR = 1
 RANGE_BOW = 2
 
@@ -78,7 +75,6 @@ class Potion(Item):
 
 
 class PotionForce(Potion):
-    # Potion force is pf.
     def __str__(self):
         return "pf"
 
@@ -100,7 +96,6 @@ class PotionForce(Potion):
 
 
 class PotionLife(Potion):
-    # Potion life is pl.
     def __str__(self):
         return "pl"
 
@@ -127,7 +122,6 @@ class PotionLife(Potion):
 
 
 class PotionPoison(Potion):
-    # Potion poison is po.
     def __str__(self):
         return "po"
 
@@ -186,7 +180,6 @@ class Weapon(Item):
 
 
 class Sword(Weapon):
-    # Sword is sw.
     def __str__(self):
         return "sw"
 
@@ -212,7 +205,6 @@ class Sword(Weapon):
 
 
 class Spear(Weapon):
-    # Spear is sp.
     def __str__(self):
         return "sp"
 
@@ -239,7 +231,6 @@ class Spear(Weapon):
 
 
 class Bow(Weapon):
-    # Bow is wo.
     def __str__(self):
         return "wo"
 
