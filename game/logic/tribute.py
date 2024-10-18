@@ -5,12 +5,10 @@ from game.logic.cell import State
 
 MAX_LIFE_DEFAULT = 50
 MAX_COWARDICE = 5
-
 LIFE_DEFAULT = 50
 FORCE_DEFAULT = 5
 ALLIANCE_DEFAULT = 3
 COWARDICE_DEFAULT = 0
-
 RANGE_DEFAULT = 1
 POSSIBLE_POSITIONS = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1),
                       (-2, 0), (2, 0), (0, -2), (0, 2), (-2, -1), (-2, 1), (-1, -2), (-1, 2),
@@ -21,7 +19,6 @@ POSSIBLE_POSITIONS = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -
 
 
 class Tribute:
-
     def __init__(self):
         self.name = 't '
         self.life = LIFE_DEFAULT
@@ -42,15 +39,14 @@ class Tribute:
             t = Tribute()
             t.name = tribute_str
             return t
-        else:
-            raise ValueError(f'Invalid tribute string: {tribute_str}')
+        raise ValueError(f'Invalid tribute string: {tribute_str}')
 
-    # Method to know if a tribute is alive or dead
+    # Returns true if a tribute is alive
     def is_alive(self):
         if self.life > 0:
             return True
 
-    # Method to know if a tribute is alive or dead
+    # Returns true if a tribute is dead
     def is_dead(self):
         if self.life <= 0:
             return True
@@ -85,9 +81,8 @@ class Tribute:
             raise ValueError("The tribute is not Neutral")
         if self.generates_alliance_value(self.alliance, random.randint(1, 10)) is True:
             return True
-        else:
-            tribute.enemy = self
-            return False
+        tribute.enemy = self
+        return False
 
     # Calculates the alliance value based on the value of alliance of tribute and one simulated value for neutral.
     @staticmethod
@@ -119,49 +114,41 @@ class Tribute:
         adjacent_pos = board.get_free_adjacents_positions(self.pos[0], self.pos[1])
         if not ((x, y) in adjacent_pos):
             raise ValueError(f'Position ({x}, {y}) is not free Adjacent')
-
         board.put_tribute(x, y, self)
 
     # Returns the closest position to coordinates (x, y) that a tribute can move to.
     def return_clossest(self, x, y, board):
         def calculate_distance(position):
             return ((position[0] - x) ** 2 + (position[1] - y) ** 2) ** 0.5
-
         possible_moves = board.get_free_adjacents_positions(self.pos[0], self.pos[1])
         possible_moves.sort(key=calculate_distance)
         if not possible_moves:
             raise ValueError(f'No FREE positions')
-
         return possible_moves[0]
 
     # Method to determine the cells that are free within a two-cell distance
     def get_neighbors_2_distance_free(self, board):
         neighbors = []
         possible_neighbors = self.get_neighbors_2_distance(board)
-
         for pos in possible_neighbors:
             if (0 <= pos[0] < board.rows) and (0 <= pos[1] < board.columns):
                 if board.get_element(pos[0], pos[1]).get_state() == State.FREE:
                     neighbors.append((pos[0], pos[1]))
-
         return neighbors
 
     # Method to determine the neighbors within a two-cell distance of a tribute
     def get_neighbors_2_distance(self, board):
         (x, y) = self.pos
         neighbors = []
-
         possible_neighbors = [
             (x - 2, y - 2), (x - 2, y - 1), (x - 2, y), (x - 2, y + 1), (x - 2, y + 2),
             (x - 1, y - 2), (x, y - 2), (x + 1, y - 2), (x + 2, y - 2),
             (x + 2, y - 1), (x + 2, y), (x + 2, y + 1), (x + 2, y + 2),
             (x - 1, y + 2), (x, y + 2), (x + 1, y + 2)
         ]
-
         for i, j in possible_neighbors:
             if (0 <= i < board.rows) and (0 <= j < board.columns):
                 neighbors.append((i, j))
-
         return neighbors
 
     # Method to know if a tribute has to escape down or up, left or right
@@ -176,7 +163,6 @@ class Tribute:
             y_escape = [tribute_y - 2, tribute_y - 1, tribute_y]
         else:
             y_escape = [tribute_y + 2, tribute_y + 1, tribute_y]
-        
         return x_escape, y_escape
 
     # Method for calculate the best escape for a tribute with cowardice
@@ -190,7 +176,6 @@ class Tribute:
                 if (x, y) in neighbors:
                     if (x, y) != self.pos:
                         return x, y
-
         return neighbors[0]
 
     # Returns the positions visible to an tribute within an certain range.
@@ -209,15 +194,12 @@ class Tribute:
         x, y = self.pos
         if not (0 <= x < board.rows and 0 <= y < board.columns):
             raise ValueError(f"Coordinates ({x}, {y}) are out of bounds")
-
         list_pos = self.tribute_vision_pos(board)
         tribute_vision_cells = []
-
         for pos in list_pos:
             x, y = pos
             if 0 <= x < board.rows and 0 <= y < board.columns:
                 tribute_vision_cells.append(board.get_element(x, y))
-
         return tribute_vision_cells
 
     # Method to move the tribute one cell closer to the position
