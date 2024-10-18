@@ -8,7 +8,6 @@ DISTRICT_DEFAULT = 0
 
 
 class District:
-
     # Constructor of District class where initializes all attributes
     def __init__(self):
         self.number_district = None
@@ -54,15 +53,14 @@ class District:
     def add_tribute(self, tribute):
         if not isinstance(tribute, Tribute):
             raise ValueError(f'Is not an instance of Tribute: {tribute}')
-
         self.tributes.append(tribute)
         self.cant_tributes += 1
 
     # Remove one tribute in a list
     def remove_tribute(self, tribute):
-        for tr in self.tributes:
-            if tribute.__eq__(tr):
-                self.tributes.remove(tr)
+        for t in self.tributes:
+            if tribute.__eq__(t):
+                self.tributes.remove(t)
                 self.cant_tributes -= 1
 
     # Method to assign a name for the tributes of the district
