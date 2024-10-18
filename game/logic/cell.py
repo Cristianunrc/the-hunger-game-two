@@ -7,7 +7,6 @@ class State(Enum):
     ITEM = 2
     TRIBUTE = 3
 
-
 FREE = State.FREE
 ITEM = State.ITEM
 TRIBUTE = State.TRIBUTE
@@ -32,14 +31,12 @@ class Cell:
     def get_item(self):
         if self.item is None:
             raise ValueError(f"No item in this position")
-
         return self.item
     
     # Get tribute of a cell
     def get_tribute(self):
         if self.tribute is None:
             raise ValueError(f"No tribute in this position")
-
         return self.tribute
 
     def __str__(self):
@@ -53,40 +50,36 @@ class Cell:
     def __eq__(self, other):
         return isinstance(other, Cell)
 
-    # Method to put a tribute in a cell
+    # Put a tribute in a cell
     def put_tribute(self, tribute):
         if self.state == TRIBUTE:
             raise ValueError(f"Trying to place one Tribute on top of another")
-
         self.state = TRIBUTE
         self.tribute = tribute
 
-    # Method to remove a tribute in a cell
+    # Remove a tribute in a cell
     def remove_tribute(self):
         if self.get_state() == ITEM or self.get_state() == FREE:
             raise ValueError(f"Trying to remove one Item or the cell is FREE")
-
         self.tribute.past_pos = self.tribute.pos
         self.state = FREE
         self.tribute = None
 
-    # Method to put a item in a cell
+    # Put a item in a cell
     def put_item(self, item):
         if self.state != FREE:
             raise ValueError(
                 f"Trying to place one Item on top of another or over an Tribute"
             )
-
         self.state = ITEM
         self.item = item
 
-    # Method to remove a item in a cell
+    # Remove a item in a cell
     def remove_item(self):
         if self.item is None:
             raise ValueError(f"Trying to remove an item where there isn't one")
         if self.tribute is None:
             self.state = FREE
-
         self.item = None
 
 
