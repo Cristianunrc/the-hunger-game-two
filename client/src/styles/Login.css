@@ -10,7 +10,7 @@
   width: 100vw;
   height: 100vh;
   background: url('../../public/backgrounds/login.jpg') center/cover no-repeat fixed;
-  background-size: 100% 100%; /* la imágen cubre completamente la pantalla*/
+  background-size: 100% 100%;
   z-index: -1;
   transition: filter 0.5s ease-in-out;
   filter: blur(0px);

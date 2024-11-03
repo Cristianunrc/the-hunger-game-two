@@ -64,10 +64,9 @@ const renderTributeImage = (selectedTribute, characters) => {
 
 const Characters = () => {
   const { selectedCharacter, setCharacters, setNeutralCharacter, setCharactersOrdered } = useGame();
-
+  
   useEffect(() => {
-    const tributeImages = renderTributeImage(selectedCharacter, CharacterImagesWeapons);
-    
+    const tributeImages = renderTributeImage(selectedCharacter, CharacterImagesWeapons);    
     setCharacters(tributeImages);
     setNeutralCharacter(TributeNFight);
     setCharactersOrdered(CharacterImagesWeapons);

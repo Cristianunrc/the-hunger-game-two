@@ -204,5 +204,5 @@
 }
 
 .incrementable-value .decrement-button {
-  order: 1; /* Cambia el orden a 1 para moverlo a la izquierda */
+  order: 1;
 }

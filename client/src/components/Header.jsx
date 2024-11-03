@@ -2,19 +2,14 @@ import React, { useState, useRef } from 'react';
 import '../styles/Header.css';
 
 const Header = ({ onViewChange, isLoggedIn, authenticatedUser }) => {
-
-  const [volume, setVolume] = useState(0.2); 
+  const [volume, setVolume] = useState(0.2);
   const audioRef = useRef(new Audio('/audio.mp3'));
   const [isVolumeVisible, setIsVolumeVisible] = useState(false);
   const volVisble = isVolumeVisible ? 'volume-button-on' : 'volume-button-off';
 
-  const handleLogoClick = () => {
-    window.location.href = '/';
-  };
+  const handleLogoClick = () => window.location.href = '/';
 
-  const handleToggleVolume = () => {
-    setIsVolumeVisible(!isVolumeVisible);
-  };
+  const handleToggleVolume = () => setIsVolumeVisible(!isVolumeVisible);
 
   const handleVolumeChange = (event) => {
     const newVolume = parseFloat(event.target.value);
@@ -22,9 +17,7 @@ const Header = ({ onViewChange, isLoggedIn, authenticatedUser }) => {
     setVolume(newVolume);
   };
 
-  const handleLoginClick = () => {
-    onViewChange("login");
-  };
+  const handleLoginClick = () => onViewChange("login");
 
   return (
     <header className='header'>

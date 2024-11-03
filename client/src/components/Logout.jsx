@@ -4,15 +4,12 @@ import '../styles/Logout.css';
 const Logout = ({ isLoggedIn, onLogout, onViewChange }) => {
   
   const handleLogout = async () => {
-   
     try {
       const accessToken = localStorage.getItem('access_token');
-      
       if (!accessToken) {
         console.error('Token de acceso no encontrado al cerrar sesión.')
         return;
       }
-
       const response = await fetch('http://localhost:5000/game/logout', {
         method: 'POST',
         headers: {

@@ -4,10 +4,7 @@ import '../styles/Rules.css';
 
 const Rules = ({ onViewChange }) => {
   const { title, content } = rulesInfo;
-
-  const handleGoToInitGame = () => {
-    onViewChange('init');
-  };
+  const handleGoToInitGame = () => onViewChange('init');
 
   return (
     <div className="rules-container-wrapper">
