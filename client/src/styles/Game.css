@@ -48,8 +48,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(10px); /* Aplicar un desenfoque al fondo */
-  z-index: 1; /* Asegurarse de que esté detrás de la ventana emergente */
+  backdrop-filter: blur(10px);
+  z-index: 1;
   font-family: '8-bit', sans-serif;
 }
 
