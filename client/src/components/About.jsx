@@ -4,7 +4,7 @@ import '../styles/About.css';
 
 const About = ({ onViewChange }) => {
   const { title, content } = gameInfo;
-
+  
   const images = [
     { url: '/board-images/items/heal.png', alt: 'potionlife', description: 'Life' },
     { url: '/board-images/items/poison.png', alt: 'potionpoison', description: 'Poison' },
@@ -14,9 +14,7 @@ const About = ({ onViewChange }) => {
     { url: '/board-images/items/bow.png', alt: 'weaponbow', description: 'Bow' },
   ];
 
-  const handleGoToInitGame = () => {
-    onViewChange('init');
-  };
+  const handleGoToInitGame = () => onViewChange('init');
 
   return (
     <div className="about-container-wrapper">

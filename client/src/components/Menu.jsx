@@ -13,7 +13,7 @@ function InitGameButton({ isReady, onClick }) {
 function CharacterCard({ characterKey, image, isSelected, onSelect }) {
   return (
     <article
-    className={`card ${isSelected ? 'selected' : ''}`}
+      className={`card ${isSelected ? 'selected' : ''}`}
       onClick={() => onSelect(characterKey)}
       >
       <img src={image} className="image" alt={`Character ${characterKey}`} />
@@ -143,7 +143,7 @@ export default function Menu({ onViewChange }) {
     }
   };
 
-  // Regula que todas las stats disponibles sean distribuidas y que se elija un personaje
+  // Asegura que las stats sean distribuidas y que se elija un personaje
   useEffect(() => {
     if (!statsBar.includes(true) && selectedCharacter != null) {
       setIsReady(true);
@@ -152,7 +152,6 @@ export default function Menu({ onViewChange }) {
     }
   }, [statsBar, selectedCharacter]);
   
-  // Hago un fetch para obtener configuraciones iniciales
   const getMenu = async () => {
     try {
       const data = await fetch("http://localhost:5000/game/district");
@@ -170,12 +169,11 @@ export default function Menu({ onViewChange }) {
       updatedStats[key] = { attribute, bar: filledBar, increases, consumes };
     });
     setStats(updatedStats);
-
     const fetchData = async () => {
       try {
         const result = await getMenu();
         act(() => {
-          setMenu(result); // act asegura que setMenu esté sincronizado y finalizado antes de que la prueba continúe ejecutándose
+          setMenu(result);
         });
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -190,9 +188,7 @@ export default function Menu({ onViewChange }) {
     const dataToSend = {
       ...menu,
     };
-
     const storedToken = localStorage.getItem('access_token');
-      
     if (storedToken) {
       try {
         const response = await fetch("http://localhost:5000/game/district", {
@@ -217,9 +213,7 @@ export default function Menu({ onViewChange }) {
     }
   };
 
-  const handleBackToHome = () => {
-    onViewChange('init');
-  };
+  const handleBackToHome = () => onViewChange('init');
 
   function MenuButtonsContainer({ children }) {
     return <div className="menu-buttons-container">{children}</div>;

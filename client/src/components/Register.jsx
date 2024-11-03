@@ -30,11 +30,7 @@ const Register = ({ onViewChange, isLoggedIn }) => {
       return;
     }
 
-    const userData = {
-      name: username,
-      password: password,
-      confirmPassword: confirmPassword,
-    };
+    const userData = { name: username, password: password, confirmPassword: confirmPassword };
 
     try {
       const response = await fetch("http://localhost:5000/game/register", {
@@ -59,9 +55,7 @@ const Register = ({ onViewChange, isLoggedIn }) => {
     }
   };
 
-  const handleGoToInitGame = () => {
-    onViewChange('init');
-  };
+  const handleGoToInitGame = () => onViewChange('init');
 
   return (
     <div className="main-container">
@@ -79,7 +73,6 @@ const Register = ({ onViewChange, isLoggedIn }) => {
             }}
           />
           {usernameError && <div className="error">{usernameError}</div>}
-          
           <input
             type="password"
             placeholder="Password"
@@ -90,7 +83,6 @@ const Register = ({ onViewChange, isLoggedIn }) => {
             }}
           />
           {passwordError && <div className="error">{passwordError}</div>}
-          
           <input
             type="password"
             placeholder="Confirm password"

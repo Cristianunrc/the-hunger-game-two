@@ -9,7 +9,6 @@ const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
   const [loginError, setLoginError] = useState(''); 
      
   const handleLogin = async () => {
-
     setUsernameError('');
     setPasswordError('');
     setLoginError('');
@@ -29,10 +28,7 @@ const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
       return;
     }
 
-    const userData = {
-      name: username,
-      password: password, 
-    };
+    const userData = { name: username, password: password };
 
     try {
       const response = await fetch("http://localhost:5000/game/login", {
@@ -45,8 +41,7 @@ const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
 
       if (response.ok) {
         const responseData = await response.json();
-        const accessToken = responseData.access_token; // se recupera el token de acceso desde api
-
+        const accessToken = responseData.access_token;
         localStorage.setItem('access_token', accessToken);
         onLogin(true, username);
         onViewChange('init');
@@ -58,9 +53,7 @@ const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
     }
   };
 
-  const handleGoToInitGame = () => {
-    onViewChange('init');
-  };
+  const handleGoToInitGame = () => onViewChange('init');
 
   return (
     <div className="main-container">
@@ -73,7 +66,7 @@ const Login = ({ onViewChange, onLogin, isLoggedIn }) => {
                 placeholder="Username"
                 value={username}
                 onChange={(e) => {
-                setUsername(e.target.value); // aqui se setea el username
+                setUsername(e.target.value);
                 setUsernameError('');
                 setLoginError('');
                 }}

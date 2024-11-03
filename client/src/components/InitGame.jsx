@@ -5,17 +5,9 @@ import Logout from './Logout.jsx';
 import '../styles/InitGame.css';
 
 const InitGame = ({ onViewChange, isLoggedIn, onLogout, authenticatedUser }) => {
-  const handlePlayGame = () => {
-    onViewChange("menu");
-  };
-
-  const handleViewRules = () => {
-    onViewChange("rules");
-  };
-
-  const handleViewAbout = () => {
-    onViewChange("about");
-  };
+  const handlePlayGame = () => onViewChange("menu");
+  const handleViewRules = () => onViewChange("rules");
+  const handleViewAbout = () => onViewChange("about");
 
   return (
     <div className="init-render">

@@ -7,17 +7,12 @@ const WinnerScreen = ({ onViewChange }) => {
   const audioRef = useRef(null);
   const { characters } = useGame();
   const { winnerCharacter } = useGame();
-
-  const handleRestartGame = () => {
-    onViewChange("menu");
-  };
+  const handleRestartGame = () => onViewChange("menu");
 
   useEffect(() => {
     const audio = audioRef.current;
-
     if (audio) {
       const isPlaying = audio.currentTime > 0 && !audio.paused && !audio.ended && audio.readySate > 2;
-  
       if (!isPlaying) {
         audio.play();
       }

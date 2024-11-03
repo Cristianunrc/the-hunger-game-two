@@ -31,21 +31,10 @@ function StatsBar({ stats }) {
   );
 }
 
-function IncrementableBar({
-  attribute,
-  stats,
-  onIncrement,
-  onDecrement,
-  value,
-  }) 
-  {
-  const handleIncrement = () => {
-    onIncrement();
-  };
-  
-  const handleDecrement = () => {
-    onDecrement();
-  };
+function IncrementableBar({ attribute, stats, onIncrement, onDecrement, value }) {
+  const handleIncrement = () => onIncrement();
+  const handleDecrement = () => onDecrement();
+
   return (
     <div className="incrementable-bars">
       <div className="incrementable-bar-atribute">{attribute}</div>
@@ -58,4 +47,5 @@ function IncrementableBar({
     </div>
   );
 }
+
 export { IncrementableBar, StatsBar, Stat };

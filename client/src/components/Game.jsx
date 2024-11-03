@@ -29,52 +29,38 @@ const ControlsAdvance = memo(({ onPause, onBack, isPaused }) => {
 });
 
 const Game = ({ onViewChange }) => {
-
   //Tamaño del tablero
   const [boardSize, setBoardSize] = useState(20);
-
   //Estado del tablero
   const [boardState, setBoardState] = useState([]);
-
   //Estado de la simulación
   const [isPaused, setPaused] = useState(false);
-  
   //Estado ganador
   const [winner, setWinner] = useState(null);
-
   //Estado distritos
   const [liveTribute, setLiveTribute] = useState([]);
-  
   //Salud de cada distrito
   const [healthDistrict, setHealthDistrict] = useState([]); 
-
   //Salud del distrito 0
   const [healthDistrict0, setHealthDistrict0] = useState(0);
-
   //Estado del juego
   const [gameInitialized, setGameInitialized] = useState(false);
-
   //Estado para regular el fetch
   const [fetchGameData, setFetchGameData] = useState(true);
-
   //Estado para obtener el id del juego actual
   const { gameID, setGameID } = useGame();
-
   //Estado para obtener la apariencia del distrito ganador
   const { setWinnerCharacter } = useGame();
-
   //Estado para obtener la apariencia de cada distrito
   const { characters } = useGame();
-
   // const { charactersLife, setCharactersLife } = useGame();
- 
   const [speed, setSpeed] = useState(1);
-
+  
   const handleSpeedChange = (event) => {
     const newSpeed = parseFloat(event.target.value);
     setSpeed(newSpeed);
   };
-
+  
   const SpeedSlider = ({ speed, handleSpeedChange }) => {
     return (
       <div className="speed-slider">
@@ -94,9 +80,7 @@ const Game = ({ onViewChange }) => {
   };
 
   // Pone pausa o reanuda la simulación
-  const handlePause = () => {
-    setPaused(!isPaused); 
-  };
+  const handlePause = () => setPaused(!isPaused);
 
   const handleFinish = () => {
     setGameID(null);
@@ -107,7 +91,6 @@ const Game = ({ onViewChange }) => {
     setGameID(null);
     onViewChange("menu");
   }
-
   // Tablero vacío
   const emptyBoard = Array.from({ length: boardSize }, () => Array(boardSize).fill('  '));
   
@@ -116,20 +99,17 @@ const Game = ({ onViewChange }) => {
     const response = await fetch(`http://localhost:5000/game/${gameID}`, {
       method: 'PUT',
     });
-
     if (response.ok) {
       const data = await response.json();
       const gameData = data[gameID];
       const health = data['health'];
       // const lifes = data['lifes'];
-
       if (gameData && gameData.board) {
         setBoardState(gameData.board.board);
         setBoardSize(gameData.board.rows);
         // setCharactersLife(lifes);
         setHealthDistrict(health); // seteo la salud de todos los distritos
         setHealthDistrict0(health[0]); // seteo la salud del distrito 0
-
       } else {
         console.error('La estructura de datos es incorrecta:', data);
       }
@@ -153,12 +133,10 @@ const Game = ({ onViewChange }) => {
           const pause = data['pause'];
           const health = data['health'];
           // const lifes = data['lifes'];
-
           setLiveTribute(pause);
           setHealthDistrict(health);
           // setCharactersLife(lifes);
           setBoardState(gameData.board.board);
-          
           if (gameData.winner !== null) {
             setGameID(null);
             setWinner(gameData.winner);
@@ -175,7 +153,6 @@ const Game = ({ onViewChange }) => {
   // Crea un juego si es necesario y se encarga de actualizarlo cada cierto intervalo
   useEffect(() => {
     let timeInterval;
-
     const updateTimeInterval = () => {
       clearInterval(timeInterval);
       timeInterval = setInterval(() => {
@@ -190,15 +167,10 @@ const Game = ({ onViewChange }) => {
     }
 
     if (!fetchGameData) {
-      // se demora 1 sec antes de mostrar la pantalla del distrito ganador
       setTimeout(handleFinish, 1000);
     }
-
-    updateTimeInterval(); // Establece el intervalo inicial
-
-    return () => {
-      clearInterval(timeInterval);
-    };
+    updateTimeInterval();
+    return () => clearInterval(timeInterval);
   }, [gameID, isPaused, gameInitialized, winner, speed]);
 
   return (
