@@ -4,10 +4,6 @@
   padding-top: 10px;
 }
 
-.grid::-webkit-scrollbar {
-  display: none; /* Escondemos la scrollbar en Chrome, Safari y Edge */
-}
-
 .card {
   display: flex;
   width: 75px;
@@ -45,7 +41,7 @@
   background-color: #ffffff;
   border: 1px solid #0000004f;
   border-radius: 5px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .is-consumed {
@@ -54,7 +50,7 @@
   margin: 2px;
   border: 1px solid #0000004f;
   border-radius: 5px;
-  overflow: hidden;
+  overflow: auto;
   background-color: hsl(14, 100%, 45%);
 }
 
@@ -174,7 +170,7 @@
 }
 
 .menu-container {
-  overflow: hidden;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   height: 100vh; 
